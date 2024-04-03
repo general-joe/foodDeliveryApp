@@ -16,19 +16,26 @@ datasource db {
 model client {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   username String
-  email    String @unique
+  email    String
   password String
- createdAt        DateTime  @default(now())
- updatedAt        DateTime  @updatedAt
 }
 
-model delivery {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  Name String
-  address String
-  zipcode String
-  contact String
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+model cartegory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  type      String
+  recipe    recipe[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
+model recipe {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  image       String?
+  name        String
+  description String
+  price       String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  cartegory   cartegory? @relation(fields: [cartegoryId], references: [id])
+  cartegoryId String     @db.ObjectId
 }
