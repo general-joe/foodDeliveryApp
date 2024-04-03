@@ -74,3 +74,34 @@ exports.removeClient = async (req, res, next) => {
           next(new CustomError(500, error));
      }
 };
+
+exports.login = async(req, res, next) => {
+     try{
+          const { email, password } = req.body;
+          const client = await prisma.client.findUnique({
+               where: {
+                    email,
+               },
+          });
+          if(client){
+               const isMatch = await bcrypt.compare(password, client.password);
+               if(isMatch){
+                    res.status(httpstatus.OK).json({
+                         client,
+                    });
+               }else{
+                    res.status(httpstatus.FORBIDDEN).json({
+                         message: "Invalid password",
+                    });
+               }
+          }else{
+               res.status(httpstatus.FORBIDDEN).json({
+                    message: "Invalid email",
+               });
+          }
+
+     }catch(error){
+          logger.error(error);
+          next(new CustomError(500, error));
+     };
+};

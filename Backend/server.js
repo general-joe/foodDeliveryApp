@@ -69,6 +69,9 @@ app.use((err, req, res, next) => {
     error: err.message,
   });
 });
+const indexRoute = require("./routes/index")
+
+app.use('/api', indexRoute);
 
 app.listen(PORT, () => {
   console.log(`Server listening to port${PORT}`);
