@@ -1,6 +1,7 @@
 const CustomError = require("../utils/customErrorClass");
 const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
+const bcrypt = require("../utils/bcrypt");
 
 const {
     signUp,
@@ -15,6 +16,7 @@ const {
 exports.addClient = async (req, res, next) => {
      try {
           const data = req.body;
+          data.password = await bcrypt.hash(data.password);
           const client = await signUp(data);
           res.status(httpstatus.CREATED).json({
                client,
