@@ -3,74 +3,71 @@ const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
 
 const {
-     addCartegory,
-     getCartegories,
-     getSingleCartegory,
-     editCartegory,
-     removeCartegory,
-} = require("../helpers/cartegory");
-// add cartegory
+     addFood,
+     getFoods,
+     editfood,
+     removeFood,
+     getSingleFood,
+} = require("../helpers/recipe");
 
-exports.regiter_cartegory = async (req, res, next) => {
+exports.saveRecipe = async (req, res, next) => {
      try {
           const data = req.body;
-          const cartegory = await addCartegory(data);
+          const recipe = await addFood(data);
           res.status(httpstatus.CREATED).json({
-               cartegory,
+               recipe,
           });
      } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
      }
 };
-
-exports.getAllCartegories = async (req, res, next) => {
+exports.getRecipes = async (req, res, next) => {
      try {
-          const cartegories = await getCartegories();
+          const recipes = await getFoods();
           res.status(httpstatus.OK).json({
-               cartegories,
+               recipes,
           });
      } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
      }
 };
-
-exports.getSingleCartegory = async (req, res, next) => {
+exports.editRecipe = async (req, res, next) => {
      try {
-          const { id } = req.param;
-          const cartegory = await getSingleCartegory(id);
-          res.status(httpstatus.OK).json({
-               cartegory,
-          });
-     } catch (error) {
-          logger.error(error);
-          next(new CustomError(500, error));
-     }
-};
-
-exports.editCartegory = async(req,res,next)=>{
-     try {
-          const { id } = req.param;
           const data = req.body;
-          const cartegory = await editCartegory(id,data);
+          const id = req.params.id;
+          const recipe = await editfood(id, data);
           res.status(httpstatus.OK).json({
-               cartegory,
+               recipe,
           });
      } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
      }
-}
-exports.removeCartegory = async (req,res,next)=>{
+};
+exports.deleteRecipe = async (req, res, next) => {
      try {
-          const { id } = req.param;
-          const cartegory = await removeCartegory(id);
+          const id = req.params.id;
+          const recipe = await removeFood(id);
           res.status(httpstatus.OK).json({
-               cartegory,
+               recipe,
           });
      } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
      }
-}
+};
+
+exports.getSingleRecipie = async (req, res, next) => {
+     try {
+          const { id } = req.params;
+          const recipe = await getSingleFood(id);
+          res.status(httpstatus.OK).json({
+               recipe,
+          });
+     } catch (error) {
+          logger.error(error);
+          next(new CustomError(500, error));
+     }
+};

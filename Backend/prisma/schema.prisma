@@ -22,6 +22,7 @@ model client {
 
 model cartegory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  item      String
   type      String
   recipe    recipe[]
   createdAt DateTime @default(now())
@@ -30,12 +31,39 @@ model cartegory {
 
 model recipe {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  image       String?
-  name        String
+  item        String?
+  title       String
   description String
-  price       String
+  quantity    Int        @default(1)
+  total       Int        @default(0)
+  price       String     @default("0.00")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   cartegory   cartegory? @relation(fields: [cartegoryId], references: [id])
   cartegoryId String     @db.ObjectId
+  order       order?     @relation(fields: [orderId], references: [id])
+  orderId     String?    @db.ObjectId
+}
+
+model order {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  subTotal    String    @default("0.00")
+  deliveryFee String    @default("0.00")
+  recipe      recipe[]
+  delivery    delivery?
+}
+
+model delivery {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  firstname   String
+  lastname    String
+  email       String
+  street_name String
+  city        String
+  state       String
+  zipcode     Int
+  country     String
+  phonenumber String
+  order       order? @relation(fields: [orderId], references: [id])
+  orderId     String @unique @db.ObjectId
 }
