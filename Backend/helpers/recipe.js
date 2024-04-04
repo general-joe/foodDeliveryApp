@@ -1,7 +1,7 @@
 const prisma = require("../utils/prismaUtil");
 
 const addFood = async (data) => {
-     const data = req.body;
+     
 
      const food = await prisma.recipe.create({
           data,
