@@ -1,8 +1,6 @@
 const prisma = require("../utils/prismaUtil");
 
 const signUp = async (data) => {
-     const data = req.body;
-
      const client = await prisma.client.create({
           data,
      });
