@@ -4,18 +4,17 @@ const logger = require("../utils/loggerUtil");
 const bcrypt = require("../utils/bcrypt");
 
 const {
-    signUp,
-    getClients,
-    getClientById,
-    editClient,
-    removeClient
-     
+     signUp,
+     getClients,
+     getClientById,
+     editClient,
+     removeClient,
 } = require("../helpers/client");
 // add cartegory
 
 exports.addClient = async (req, res, next) => {
      try {
-           data = req.body;
+          const data = req.body;
           data.password = await bcrypt.hash(data.password);
           const client = await signUp(data);
           res.status(httpstatus.CREATED).json({
@@ -75,33 +74,32 @@ exports.removeClient = async (req, res, next) => {
      }
 };
 
-exports.login = async(req, res, next) => {
-     try{
+exports.login = async (req, res, next) => {
+     try {
           const { email, password } = req.body;
           const client = await prisma.client.findUnique({
                where: {
                     email,
                },
           });
-          if(client){
+          if (client) {
                const isMatch = await bcrypt.compare(password, client.password);
-               if(isMatch){
+               if (isMatch) {
                     res.status(httpstatus.OK).json({
                          client,
                     });
-               }else{
+               } else {
                     res.status(httpstatus.FORBIDDEN).json({
                          message: "Invalid password",
                     });
                }
-          }else{
+          } else {
                res.status(httpstatus.FORBIDDEN).json({
                     message: "Invalid email",
                });
           }
-
-     }catch(error){
+     } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
-     };
+     }
 };

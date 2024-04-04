@@ -43,6 +43,7 @@ model recipe {
   cartegoryId String     @db.ObjectId
   order       order?     @relation(fields: [orderId], references: [id])
   orderId     String?    @db.ObjectId
+  
 }
 
 model order {
@@ -51,6 +52,8 @@ model order {
   deliveryFee String    @default("0.00")
   recipe      recipe[]
   delivery    delivery?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model delivery {
@@ -66,4 +69,6 @@ model delivery {
   phonenumber String
   order       order? @relation(fields: [orderId], references: [id])
   orderId     String @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
