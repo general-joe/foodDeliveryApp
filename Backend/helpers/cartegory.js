@@ -1,8 +1,7 @@
 const prisma = require("../utils/prismaUtil");
 
 const addCartegory = async (data) => {
-  const data = req.body;
-
+  
   const cartegory = await prisma.cartegory.create({
     data,
   });
