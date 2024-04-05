@@ -1,0 +1,11 @@
+2024-04-05T15:23:40.968Z [31merror[39m:	email is not defined
+2024-04-05T15:24:03.369Z [31merror[39m:	Cannot access 'client' before initialization
+2024-04-05T15:24:13.192Z [31merror[39m:	Cannot access 'client' before initialization
+2024-04-05T15:25:29.608Z [31merror[39m:	email is not defined
+2024-04-05T15:29:19.065Z [31merror[39m:	Cannot access 'client' before initialization
+2024-04-05T15:29:40.670Z [31merror[39m:	email is not defined
+2024-04-05T15:31:37.743Z [31merror[39m:	prisma is not defined
+2024-04-05T15:52:45.336Z [31merror[39m:	data and hash arguments required
+2024-04-05T15:53:13.258Z [31merror[39m:	data and hash arguments required
+2024-04-05T15:57:55.304Z [31merror[39m:	data and hash arguments required
+2024-04-05T15:59:11.688Z [31merror[39m:	data and hash arguments required
