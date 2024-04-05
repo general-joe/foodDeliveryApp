@@ -34,9 +34,7 @@ const removeClient = async (id) => {
      return client;
 };
 
-const login = async (req, res, next) => {
-     
-          const {email} = req.body;
+const login = async (email) => {
           const client = await prisma.client.findUnique({
                where: {
                     email,

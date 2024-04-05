@@ -78,16 +78,23 @@ exports.removeClient = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
      try {
-      const client = await login()
-       const checkPassword = await bcrypt.compare(password, client.password);
-       if (!checkPassword) {
-         throw new Error('Invalid credentials');
+     const {email, password} = req.body;
+     const client = await login(email)
+     if (!client) {
+           throw new Error('email not found');
        } else {
-         delete client.password;
-         res.status(httpstatus.OK).json({
-          message: 'User succesfully logged in !',
-          id: req.client.id,
-     });
+          const checkPassword = await bcrypt.compare(password, client.password);
+          if (!checkPassword) {
+            throw new Error('Invalid credentials');
+          } else {
+            delete client.password;
+            res.status(httpstatus.OK).json({
+             message: 'User succesfully logged in !',
+             id: req.client.id,
+        });
+
+     }
+      
 }
      } catch (error) {
        logger.error(error);

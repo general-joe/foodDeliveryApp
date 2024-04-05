@@ -29,6 +29,11 @@
             "date": 1712332802289,
             "name": "logs\\“NodeWinstonApp-2024-04-05-16.log",
             "hash": "70ddf454a138383f318c82ecff5d21873588ad09b8db32a1384042d30bf5bbad"
+        },
+        {
+            "date": 1712352943369,
+            "name": "logs\\“NodeWinstonApp-2024-04-05-21.log",
+            "hash": "e6db0e856608ef95adffd7bf3843739dfcd692244b6b3caae3a2179d2bc43910"
         }
     ],
     "hashType": "sha256"
