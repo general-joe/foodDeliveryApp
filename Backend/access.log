@@ -52,3 +52,4 @@
 ::1 - - [05/Apr/2024:16:18:50 +0000] "POST /api/v1/web/client/login HTTP/1.1" 500 1602 "-" "PostmanRuntime/7.37.3"
 ::1 - - [05/Apr/2024:16:19:12 +0000] "POST /api/v1/web/client/login HTTP/1.1" 500 1602 "-" "PostmanRuntime/7.37.3"
 ::1 - - [05/Apr/2024:16:19:32 +0000] "POST /api/v1/web/client/login HTTP/1.1" 500 428 "-" "PostmanRuntime/7.37.3"
+::1 - - [05/Apr/2024:21:35:56 +0000] "POST /api/v1/web/client/login HTTP/1.1" 200 42 "-" "PostmanRuntime/7.37.3"
