@@ -1,14 +1,6 @@
 const { check } = require("express-validator");
 
-exports.login = [
-  check("email")
-  
-    .notEmpty()
-  
-  
-]
-
-exports.signUp = [
+exports.clientValidationRules = [
   check("email")
   
     .notEmpty()
@@ -20,5 +12,7 @@ exports.signUp = [
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8 })
-    .withMessage("Password must be at least 8 characters")
-]
+    .withMessage("Password must be at least 8 characters"),
+
+   
+];

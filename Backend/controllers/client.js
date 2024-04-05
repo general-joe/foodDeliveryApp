@@ -17,6 +17,7 @@ exports.addClient = async (req, res, next) => {
           const data = req.body;
           data.password = await bcrypt.hash(data.password);
           const client = await signUp(data);
+          delete client.password;
           res.status(httpstatus.CREATED).json({
                client,
           });

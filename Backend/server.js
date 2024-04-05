@@ -66,5 +66,5 @@ const indexRoute = require("./routes/index");
 app.use("/api", indexRoute);
 
 app.listen(PORT, () => {
-     console.log(`Server listening to port${PORT}`);
+     console.log(`Server listening to port ${PORT}`);
 });
