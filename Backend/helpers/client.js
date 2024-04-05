@@ -12,18 +12,14 @@ const getClients = async () => {
      return clients;
 };
 
-const getClientById = async () => {
-     const data = req.body;
-     const id = req.params.id;
+const getClientById = async (id) => {
      const client = await prisma.client.update({
           where: { id },
      });
      return client;
 };
 
-const editClient = async () => {
-     const data = req.body;
-     const id = req.params.id;
+const editClient = async (id, data) => {
      const client = await prisma.client.update({
           where: { id },
           data,
@@ -31,8 +27,7 @@ const editClient = async () => {
      return client;
 };
 
-const removeClient = async () => {
-     const id = req.params.id;
+const removeClient = async (id) => {
      const client = await prisma.client.delete({
           where: { id },
      });
