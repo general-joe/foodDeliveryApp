@@ -1,0 +1,14 @@
+2024-04-05T16:10:19.185Z [31merror[39m:	data is not defined
+2024-04-05T16:12:02.363Z [31merror[39m:	client is not defined
+2024-04-05T16:12:49.732Z [31merror[39m:	password is not defined
+2024-04-05T16:12:53.051Z [31merror[39m:	password is not defined
+2024-04-05T16:13:37.337Z [31merror[39m:	data is not defined
+2024-04-05T16:13:56.271Z [31merror[39m:	client is not defined
+2024-04-05T16:16:14.065Z [31merror[39m:	email is not defined
+2024-04-05T16:16:41.114Z [31merror[39m:	password is not defined
+2024-04-05T16:16:54.516Z [31merror[39m:	logger is not defined
+2024-04-05T16:17:32.767Z [31merror[39m:	CustomError is not defined
+2024-04-05T16:18:02.749Z [31merror[39m:	Cannot read properties of undefined (reading 'body')
+2024-04-05T16:18:50.081Z [31merror[39m:	Cannot access 'client' before initialization
+2024-04-05T16:19:12.334Z [31merror[39m:	Cannot access 'client' before initialization
+2024-04-05T16:19:32.661Z [31merror[39m:	Cannot read properties of undefined (reading 'body')
