@@ -1,8 +1,6 @@
 const prisma = require("../utils/prismaUtil");
 
 const addFood = async (data) => {
-     
-
      const food = await prisma.recipe.create({
           data,
      });
@@ -26,9 +24,7 @@ const getSingleFood = async (id) => {
      });
      return food;
 };
-const editfood = async () => {
-     const data = req.body;
-     const id = req.params.id;
+const editfood = async (id, data) => {
      const food = await prisma.recipe.update({
           where: { id },
           data,
@@ -36,8 +32,7 @@ const editfood = async () => {
      return food;
 };
 
-const removeFood = async () => {
-     const id = req.params.id;
+const removeFood = async (id) => {
      const food = await prisma.recipe.delete({
           where: { id },
      });
@@ -49,5 +44,5 @@ module.exports = {
      getFoods,
      editfood,
      removeFood,
-     getSingleFood
+     getSingleFood,
 };
