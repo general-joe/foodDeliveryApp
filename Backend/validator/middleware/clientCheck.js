@@ -1,7 +1,7 @@
 const prisma = require("../../utils/prismaUtil");
 const httpstatus = require("../../utils/httpstatus");
 
-exports.checkUser = async(req,res,next)=>{
+exports.client = async(req,res,next)=>{
     try{
     const{email} = req.body;
     const client = await prisma.client.findUnique({
