@@ -14,10 +14,11 @@ datasource db {
 }
 
 model client {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   username String
-  email    String @unique 
+  email    String  @unique
   password String
+  order    order[]
 }
 
 model cartegory {
@@ -43,7 +44,6 @@ model recipe {
   cartegoryId String     @db.ObjectId
   order       order?     @relation(fields: [orderId], references: [id])
   orderId     String?    @db.ObjectId
-  
 }
 
 model order {
@@ -52,12 +52,14 @@ model order {
   deliveryFee String    @default("0.00")
   recipe      recipe[]
   delivery    delivery?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  client      client?   @relation(fields: [clientId], references: [id])
+  clientId    String?   @db.ObjectId
 }
 
 model delivery {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   firstname   String
   lastname    String
   email       String
@@ -67,8 +69,8 @@ model delivery {
   zipcode     Int
   country     String
   phonenumber String
-  order       order? @relation(fields: [orderId], references: [id])
-  orderId     String @unique @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  order       order?   @relation(fields: [orderId], references: [id])
+  orderId     String   @unique @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
