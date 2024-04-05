@@ -4,3 +4,4 @@
 ::1 - - [04/Apr/2024:20:21:05 +0000] "GET /api/v1/web/client/list HTTP/1.1" 500 1146 "-" "PostmanRuntime/7.37.0"
 ::1 - - [04/Apr/2024:20:23:47 +0000] "GET /api/v1/web/client/list HTTP/1.1" 500 1313 "-" "PostmanRuntime/7.37.0"
 ::1 - - [04/Apr/2024:20:25:47 +0000] "GET /api/v1/web/client/list HTTP/1.1" 200 14 "-" "PostmanRuntime/7.37.0"
+::1 - - [05/Apr/2024:10:52:20 +0000] "POST /api/v1/web/client/signUp HTTP/1.1" 201 174 "-" "PostmanRuntime/7.37.3"
