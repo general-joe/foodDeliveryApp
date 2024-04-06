@@ -7,7 +7,7 @@ const delivery = require("./delivery");
 const order = require("./order");
 
 route.use("/client", client);
-route.use("/cartegory", category);
+route.use("/category", category);
 route.use("/recipe", recipe);
 route.use("/delivery", delivery);
 route.use("/order", order);

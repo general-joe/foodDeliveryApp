@@ -39,7 +39,7 @@ exports.getAllCartegories = async (req, res, next) => {
 exports.getSingleCartegory = async (req, res, next) => {
      try {
           const { id } = req.param;
-          const cartegory = await getSingleCartegory(id);
+          const cartegory = await getSingleCartegory(req.params.id);
           res.status(httpstatus.OK).json({
                cartegory,
           });
@@ -53,7 +53,7 @@ exports.editCartegory = async(req,res,next)=>{
      try {
           const { id } = req.param;
           const data = req.body;
-          const cartegory = await editCartegory(id,data);
+          const cartegory = await editCartegory(req.params.id,req.body);
           res.status(httpstatus.OK).json({
                cartegory,
           });

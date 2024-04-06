@@ -13,7 +13,7 @@ const getClients = async () => {
 };
 
 const getClientById = async (id) => {
-     const client = await prisma.client.update({
+     const client = await prisma.client.findUnique({
           where: { id },
      });
      return client;
