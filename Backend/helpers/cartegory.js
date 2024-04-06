@@ -27,7 +27,7 @@ const getSingleCartegory = async (id) => {
 const editCartegory = async (id, data) => {
      const cartegory = await prisma.cartegory.update({
           where: {
-               id,
+               id
           },
           data,
      });

@@ -43,6 +43,7 @@ exports.getClients = async (req, res, next) => {
 exports.getClientById = async (req, res, next) => {
      try {
           const client = await getClientById(req.params.id);
+          delete client.password
           res.status(httpstatus.OK).json({
                client,
           });
@@ -55,6 +56,7 @@ exports.getClientById = async (req, res, next) => {
 exports.editClient = async (req, res, next) => {
      try {
           const client = await editClient(req.params.id, req.body);
+          delete client.password
           res.status(httpstatus.OK).json({
                client,
           });

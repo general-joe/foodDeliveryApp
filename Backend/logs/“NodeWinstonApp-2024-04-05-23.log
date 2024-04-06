@@ -1,0 +1,15 @@
+2024-04-05T23:59:41.808Z [31merror[39m:	
+Invalid `prisma.client.update()` invocation in
+C:\Users\Lyfer\Documents\Project\foodDeliveryApp\Backend\helpers\client.js:16:41
+
+  13 };
+  14 
+  15 const getClientById = async (id) => {
+→ 16      const client = await prisma.client.update({
+            where: {
+              id: "660fecc786b609441d5c1cf3"
+            },
+          + data: clientUpdateInput | clientUncheckedUpdateInput
+          })
+
+Argument `data` is missing.
