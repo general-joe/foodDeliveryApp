@@ -9,7 +9,7 @@ const {
      loadOrder,
      editOrder,
      removeOrder,
-} = require("../helpers/client");
+} = require("../helpers/order");
 
 exports.createOrder = async (req, res, next) => {
      try {
