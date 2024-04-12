@@ -3,6 +3,7 @@ const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
 const bcrypt = require("../utils/bcrypt");
 
+
 const {
      signUp,
      getClients,
@@ -90,9 +91,14 @@ exports.login = async (req, res, next) => {
             throw new Error('Invalid credentials');
           } else {
             delete client.password;
+            const token = await jwt.signToken(client.id);
             res.status(httpstatus.OK).json({
+          
              message: 'User succesfully logged in !',
+             token,
              id: req.client.id,
+             
+             
         });
 
      }
