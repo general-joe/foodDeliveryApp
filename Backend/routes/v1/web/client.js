@@ -6,6 +6,8 @@ const validationError = require("../../../utils/validationError");
 const validationScheme = require("../../../validator/validationSchema");
 const isValid = [validationScheme.clientValidationRules, validationError.validateRequestSchema];
 const availability = require("../../../validator/middleware/clientCheck");
+
+router.get('/loggout', client.logout);
 router.post("/signUp", isValid, availability.client, client.addClient);
 router.post("/login", client.login);
 router.get("/list", client.getClients);
