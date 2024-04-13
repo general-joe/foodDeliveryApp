@@ -83,3 +83,4 @@
 ::1 - - [06/Apr/2024:00:37:08 +0000] "POST /api/v1/web/recipe/add HTTP/1.1" 500 1912 "-" "PostmanRuntime/7.37.3"
 ::1 - - [06/Apr/2024:00:38:19 +0000] "POST /api/v1/web/recipe/add HTTP/1.1" 500 1570 "-" "PostmanRuntime/7.37.3"
 ::1 - - [06/Apr/2024:00:39:47 +0000] "POST /api/v1/web/recipe/add HTTP/1.1" 201 399 "-" "PostmanRuntime/7.37.3"
+::1 - - [13/Apr/2024:15:10:59 +0000] "POST /api/v1/web/client/signUp HTTP/1.1" 201 112 "-" "PostmanRuntime/7.37.3"
