@@ -46,6 +46,13 @@ const Navbar = ({ setShowLogin }) => {
         >
           Contact Us
         </a>
+        <a
+          href="/about-us"
+          onClick={() => setMenu("about-us")}
+          className={menu === "about-us" ? "active" : ""}
+        >
+          About Us
+        </a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
