@@ -2,7 +2,7 @@ const CustomError = require("../utils/customErrorClass");
 const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
 const bcrypt = require("../utils/bcrypt");
-const jwt = require("jsonwebtoken");
+const {signToken} = require("../utils/tokenUtil");
 
 
 const {
@@ -92,7 +92,7 @@ exports.login = async (req, res, next) => {
             throw new Error('Invalid credentials');
           } else {
             delete client.password;
-            const token =   jwt.sign(client.id);
+            const token =  signToken(client.id);
             res.status(httpstatus.OK).json({
           
              message: 'User succesfully logged in !',
