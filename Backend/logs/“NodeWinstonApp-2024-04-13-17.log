@@ -1,0 +1,21 @@
+2024-04-13T17:58:28.855Z [31merror[39m:	[object Object]
+2024-04-13T17:59:33.910Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/home/sam/Documents/Allprojects/foodweb-api/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "egetable Beef Stew",
+          description: "A vegetable beef stew to eat along with rice or yam, it low in cholestrol and good for a healthy growth",
+          quantity: "4",
+                    ~~~
+          price: "25.0",
+          cartegoryId: "661093d3cc7c059338a32113",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713031171/food/item/yykjwjt3ylvo96omtvrk.jpg"
+        }
+      })
+
+Argument `quantity`: Invalid value provided. Expected Int, provided String.

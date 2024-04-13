@@ -1,0 +1,45 @@
+2024-04-13T18:00:15.180Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/home/sam/Documents/Allprojects/foodweb-api/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "egetable Beef Stew",
+          description: "A vegetable beef stew to eat along with rice or yam, it low in cholestrol and good for a healthy growth",
+          quantity: 4,
+          cartegoryId: "661093d3cc7c059338a32113",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713031214/food/item/lhwrsemy1nte27shsebm.jpg",
+      +   price: String
+        }
+      })
+
+Argument `price` is missing.
+2024-04-13T18:02:03.199Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/home/sam/Documents/Allprojects/foodweb-api/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "egetable Beef Stew",
+          description: "A vegetable beef stew to eat along with rice or yam, it low in cholestrol and good for a healthy growth",
+          quantity: 4,
+          price: "25.0",
+          cartegoryId: "661093d3cc7c059338a32113",
+          ~~~~~~~~~~~
+          total: NaN,
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713031320/food/item/ovq6p7l4ehefpbtk7ek0.jpg",
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime,
+      ?   cartegory?: cartegoryCreateNestedOneWithoutRecipeInput,
+      ?   order?: orderCreateNestedOneWithoutRecipeInput
+        }
+      })
+
+Unknown argument `cartegoryId`. Did you mean `cartegory`? Available options are marked with ?.
