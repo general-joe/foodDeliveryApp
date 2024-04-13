@@ -20,6 +20,7 @@ model client {
   password String
   role     String?
   order    order[]
+  
 }
 
 model cartegory {
