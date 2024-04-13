@@ -18,6 +18,7 @@ model client {
   username String
   email    String  @unique
   password String
+  role     String?
   order    order[]
 }
 
