@@ -12,14 +12,14 @@ const rootRoutes = createBrowserRouter(
         <Route
           index
           lazy={async () => {
-            const { default: Home } = await import("./Home");
+            const { default: Home } = await import("./Home/Home");
             return { Component: Home };
           }}
         />
         <Route
           path="cart"
           lazy={async () => {
-            const { default: Cart } = await import("./cart");
+            const { default: Cart } = await import("./Cart/Cart");
             return { Component: Cart };
           }}
         />
