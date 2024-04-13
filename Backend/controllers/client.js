@@ -96,7 +96,7 @@ exports.login = async (req, res, next) => {
           
              message: 'User succesfully logged in !',
              token,
-             id: req.client.id,
+             id: client.id,
              
              
         });
