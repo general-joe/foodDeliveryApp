@@ -17,6 +17,15 @@ const rootRoutes = createBrowserRouter(
           }}
         />
         <Route
+          path="order"
+          lazy={async () => {
+            const { default: PlaceOrder } = await import(
+              "./PlaceOrder/PlaceOrder"
+            );
+            return { Component: PlaceOrder };
+          }}
+        />
+        <Route
           path="cart"
           lazy={async () => {
             const { default: Cart } = await import("./Cart/Cart");
