@@ -18,12 +18,14 @@ model client {
   username String
   email    String  @unique
   password String
+  role     String?
   order    order[]
+  
 }
 
 model cartegory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  item      String
+  item      String?
   type      String
   recipe    recipe[]
   createdAt DateTime @default(now())
