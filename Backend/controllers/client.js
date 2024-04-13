@@ -92,7 +92,7 @@ exports.login = async (req, res, next) => {
             throw new Error('Invalid credentials');
           } else {
             delete client.password;
-            const token = await jwt.signToken(client.id);
+            const token =   jwt.sign(client.id);
             res.status(httpstatus.OK).json({
           
              message: 'User succesfully logged in !',
