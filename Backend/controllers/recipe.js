@@ -13,6 +13,9 @@ const {
 exports.saveRecipe = async (req, res, next) => {
   try {
     const data = req.body;
+    data.quantity = parseInt(data.quantity);
+    data.total = data.total ? parseInt(data.total) : 0;
+    console.log(data.total);
     const item = req.file ? req.file.path : undefined;
     if (item) {
       const uploaded = await cloudinary.uploader.upload(item, {
@@ -28,6 +31,7 @@ exports.saveRecipe = async (req, res, next) => {
     });
   } catch (error) {
     logger.error(error);
+    console.log(error);
     next(new CustomError(500, error));
   }
 };
