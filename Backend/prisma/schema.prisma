@@ -24,7 +24,7 @@ model client {
 
 model cartegory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  item      String
+  item      String?
   type      String
   recipe    recipe[]
   createdAt DateTime @default(now())
