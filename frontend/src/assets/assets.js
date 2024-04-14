@@ -60,6 +60,92 @@ import bag_icon from "./bag_icon.png";
 import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 
+// About us imports
+import member_405 from "./405.jpg";
+import member_421 from "./421.jpg";
+import member_423 from "./423.jpg";
+import member_432 from "./432.jpg";
+import member_433 from "./433.jpg";
+import member_436 from "./436.jpg";
+import member_437 from "./437.jpg";
+import member_439 from "./439.jpg";
+import member_457 from "./457.jpg";
+import member_478 from "./478.jpg";
+
+// About us exports
+export const members = [
+  {
+    id: 405,
+    name: "Melody Adutwumwaa Asare",
+    image: member_405,
+    indexNumber: "5221040405",
+    role: "member",
+  },
+  {
+    id: 421,
+    name: "Priscilla Wiafe Akenteng",
+    image: member_421,
+    indexNumber: "5221040421",
+    role: "member",
+  },
+  {
+    id: 423,
+    name: "Kokro Sarpong Nana Kofi",
+    image: member_423,
+    role: "member",
+    indexNumber: "5221040423",
+  },
+  {
+    id: 432,
+    name: "Wendy Erpha",
+    image: member_432,
+    role: "member",
+    indexNumber: "5221040432",
+  },
+  {
+    id: 433,
+    name: "Maryam Mohammed",
+    image: member_433,
+    role: "member",
+    indexNumber: "5221040433",
+  },
+  {
+    id: 436,
+    name: "Erica Osei Bawuah",
+    image: member_436,
+    indexNumber: "5221040436",
+    role: "member",
+  },
+  {
+    id: 437,
+    name: "Patricia Boatemaa Frimpong",
+    image: member_437,
+    role: "member",
+    indexNumber: "5221040437",
+  },
+  {
+    id: 439,
+    name: "Amankona Joseph",
+    image: member_439,
+    role: "Leader",
+    indexNumber: "5221040439",
+  },
+  {
+    id: 457,
+    name: "Brown Emmanuel",
+    image: member_457,
+    role: "Member",
+    indexNumber: "5221040457",
+  },
+  {
+    id: 478,
+    name: "Richard Bonsong",
+    image: member_478,
+    role: "Member",
+    indexNumber: "5221040478",
+  },
+];
+// Export all assets
 export const assets = {
   logo,
   basket_icon,

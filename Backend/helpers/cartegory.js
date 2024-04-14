@@ -1,14 +1,25 @@
 const prisma = require("../utils/prismaUtil");
+const cloudinary = require("../utils/cloudinary");
 
-const addCartegory = async (data) => {
-     const cartegory = await prisma.cartegory.create({
-          data,
-     });
-     return cartegory;
+const addCartegory = async (data) =>{
+     const item = req.file ? req.file.path : undefined;
+        if (item) {
+            const uploaded = await cloudinary.uploader.upload(item, {
+                folder: 'familytree/' + data.type + '/images'
+            });
+            if (uploaded) {
+                data.item = uploaded.secure_url;
+            }
+        }
+        const category = await prisma.category.create({
+          data
+        })
+        return category;
+       
 };
 
 const getCartegories = async () => {
-     const cartegories = await prisma.cartegory.findMany({
+     const cartegories = await prisma.category.findMany({
           orderBy: {
                createdAt: "desc",
           },
@@ -16,7 +27,7 @@ const getCartegories = async () => {
      return cartegories;
 };
 const getSingleCartegory = async (id) => {
-     const cartegory = await prisma.cartegory.findUnique({
+     const cartegory = await prisma.category.findUnique({
           where: {
                id,
           },
@@ -25,7 +36,7 @@ const getSingleCartegory = async (id) => {
 };
 
 const editCartegory = async (id, data) => {
-     const cartegory = await prisma.cartegory.update({
+     const cartegory = await prisma.category.update({
           where: {
                id
           },
@@ -34,7 +45,7 @@ const editCartegory = async (id, data) => {
      return cartegory;
 };
 const removeCartegory = async (id) => {
-     const cartegory = await prisma.cartegory.delete({
+     const cartegory = await prisma.category.delete({
           where: {
                id,
           },
