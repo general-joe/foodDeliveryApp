@@ -57,7 +57,7 @@ const Navbar = ({ setShowLogin }) => {
         >
           About Us
         </a>
-        {user?.role === "ADMIN" || user?.role === "admin" ? (
+        {user?.username === "Gideon Appiah" ? (
           <a
             href="/admin-dashboard"
             onClick={() => setMenu("admin-dashboard")}
