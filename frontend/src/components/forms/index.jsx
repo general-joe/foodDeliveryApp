@@ -97,7 +97,7 @@ export const Button = ({ title, loading }) => {
   ) : (
     <button
       type="submit"
-      className="bg-[#901AD8] py-3 px-1 rounded-md text-white font-semibold w-full mt-5"
+      className="bg-[#E96813] py-3 px-1 rounded-md text-white font-semibold w-full mt-5"
     >
       {title}
     </button>

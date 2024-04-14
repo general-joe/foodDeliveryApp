@@ -1,14 +1,25 @@
 import React from "react";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Category() {
   const navigate = useNavigate();
   const { data, isLoading } = restApi.useGetCategoriesQuery();
-  console.log(data, "Data");
+  const [deleteCategory] = restApi.useDeleteCategoryMutation();
+
+  const handleDelete = async (categoryId) => {
+    try {
+      await deleteCategory(categoryId);
+      toast.error("Category deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete category:", error);
+      toast.error("Failed to delete category");
+    }
+  };
+
   return (
     <div className="">
       <div className="flex items-center justify-between py-5 px-4">
@@ -57,7 +68,10 @@ function Category() {
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() => handleDelete(category.id)}
+                    >
                       <MdDelete />
                     </button>
                   </th>

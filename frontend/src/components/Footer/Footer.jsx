@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 
 const Footer = () => {
   return (
-    <div className="footer" id="footer">
+    <div className="footer flex flex-col justify-center" id="footer">
       <div className="footer-content">
         <div className="footer-content-lift">
           <img src={assets.logo} alt="" />
@@ -20,16 +20,24 @@ const Footer = () => {
             <img src={assets.linkedin_icon} alt="" />
           </div>
         </div>
-        <div className="footer-content-center">
+        <div className="footer-content-center w-full pl-5">
           <h2>COMPANY</h2>
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+            <li className="hover:underline">
+              <a href="/">Home</a>
+            </li>
+            <li className="hover:underline">
+              <a href="/about-us">About Us</a>
+            </li>
+            <li className="hover:underline">
+              <a href="/cart">Your orders</a>
+            </li>
+            <li className="hover:underline">
+              <a href="#contact-us">Contact Us</a>
+            </li>
           </ul>
         </div>
-        <div className="footer-content-right">
+        <div className="footer-content-right w-full pl-5">
           <h2>GET IN TOUCH</h2>
           <ul>
             <li>+233256515516</li>
@@ -39,9 +47,9 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <p className="footer-copyright">
-        Copyright 2024 &copy;Tomato.com-All Right Reserved.
-      </p>
+      <div className="footer-copyright text-center w-full">
+        <span>Copyright 2024 &copy;Tomato.com-All Right Reserved.</span>
+      </div>
     </div>
   );
 };
