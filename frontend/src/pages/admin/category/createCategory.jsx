@@ -9,7 +9,7 @@ function CreateCategory() {
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    const image = formData.append("image", data.image[0]);
+    const image = formData.append("image", data.image[0].name);
 
     const categoryData = {
       type: data.type,
