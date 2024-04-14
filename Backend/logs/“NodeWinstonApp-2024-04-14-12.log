@@ -1,16 +1,1 @@
-2024-04-14T12:03:19.179Z [31merror[39m:	
-Invalid `prisma.category.create()` invocation in
-C:\Users\Lyfer\Documents\Project\foodDeliveryApp\Backend\helpers\cartegory.js:4:48
-
-  1 const prisma = require("../utils/prismaUtil");
-  2 const addCategory = async(data) =>{
-  3         
-→ 4         const category = await prisma.category.create({
-              data: {
-                type : "Fruit Salad",
-                item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713096192/images/aadssiifvh9rhfa0371r.jpg",
-            +   type: String
-              }
-            })
-
-Argument `type` is missing.
+2024-04-14T12:34:59.306Z [31merror[39m:	res is not defined
