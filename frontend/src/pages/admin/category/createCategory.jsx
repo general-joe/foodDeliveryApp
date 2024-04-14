@@ -9,13 +9,10 @@ function CreateCategory() {
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    const image = formData.append("image", data.image[0].name);
+    formData.append("item", data.image[0].name);
+    formData.append("type", data.type);
 
-    const categoryData = {
-      type: data.type,
-      item: image,
-    };
-    const response = await createCategory(categoryData);
+    const response = await createCategory(formData);
     if (response.error) {
       toast(response.error);
       return;

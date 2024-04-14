@@ -13,7 +13,7 @@ function Recipe() {
         <h1 className="text-2xl font-bold ">Recipes</h1>
         <p className="flex items-center gap-2 hover:underline hover:cursor-pointer">
           Create recipe
-          <Link to="/add-recipe">
+          <Link to="/admin-dashboard/add-recipe">
             <FaPlus />
           </Link>
         </p>
