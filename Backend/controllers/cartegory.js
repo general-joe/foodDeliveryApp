@@ -1,9 +1,9 @@
 const CustomError = require("../utils/customErrorClass");
 const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
+const cloudinary = require("../utils/cloudinary");
 
 const {
-     addCartegory,
      getCartegories,
      getSingleCartegory,
      editCartegory,
@@ -14,11 +14,19 @@ const {
 exports.register_cartegory = async (req, res, next) => {
      try {
           const data = req.body;
-          console.log(req)
-          const category = await addCartegory(data);
-          res.status(httpstatus.CREATED).json({
-               category,
-          });
+          const item = req.file ? req.file.path : undefined;
+          if (item) {
+              const uploaded = await cloudinary.uploader.upload(item, {
+                  folder: 'familytree/' + type + '/images'
+              });
+              if (uploaded) {
+                  data.item = uploaded.secure_url;
+              }
+          }
+          const category = await prisma.category.create({
+            data
+          })
+          return category;
      } catch (error) {
           logger.error(error);
           next(new CustomError(500, error));
