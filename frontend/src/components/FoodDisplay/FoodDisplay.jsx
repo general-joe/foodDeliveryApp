@@ -13,16 +13,16 @@ const FoodDisplay = ({ category }) => {
         {isLoading ? (
           <div className="loader"></div>
         ) : data?.recipes.length > 0 ? (
-          data?.recipes?.map((item, index) => {
-            if (category === "All" || category === item.category) {
+          data?.recipes?.map((recipe, index) => {
+            if (category === "All" || category === recipe.category) {
               return (
                 <FoodItem
                   key={index}
-                  id={item.id}
-                  name={item.title}
-                  description={item.description}
-                  price={item.price}
-                  image={item.image}
+                  id={recipe.id}
+                  name={recipe.title}
+                  description={recipe.description}
+                  price={recipe.price}
+                  image={recipe.item}
                 />
               );
             }

@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import { restApi } from "../../appSetup/hook";
-
 import { setUserInfo } from "../../appSetup/hook/user.slice";
 
 const LoginPopUp = ({ setShowLogin }) => {
@@ -39,7 +38,7 @@ const LoginPopUp = ({ setShowLogin }) => {
         : await createClient(userData);
 
     if (response.error) {
-      toast.error(error.data.message);
+      toast.error(response.error.data.message);
       return;
     }
     if (currState === "Login") {
@@ -52,60 +51,58 @@ const LoginPopUp = ({ setShowLogin }) => {
   };
 
   return (
-    <div className="login-popup">
-      <div className="login-popup-container">
-        {/* Header & close button */}
-        <div className="login-popup-title">
-          <h2>{currState}</h2>
+    <div className="fixed inset-0 z-[1] bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="w-full max-w-[330px] p-6 bg-white text-gray-800 rounded-lg flex flex-col gap-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-tomato">{currState}</h2>
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
             alt=""
+            className="w-4 cursor-pointer"
           />
         </div>
-        <form
-          className="login-popup-container"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {/* Form input fields */}
-          <div className="login-popup-inputs">
-            {currState !== "Login" && (
-              <>
-                <input
-                  type="text"
-                  {...register("username", {
-                    required: "Username is required",
-                    maxLength: 20,
-                  })}
-                  placeholder="Your name"
-                />
-                {errors.username && <p>{errors.username.message}</p>}
-              </>
-            )}
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          {currState !== "Login" && (
             <input
-              type="email"
-              {...register("email", {
-                required: "Email is required",
+              type="text"
+              {...register("username", {
+                required: "Username is required",
                 maxLength: 20,
               })}
-              placeholder="Your email"
+              placeholder="Your name"
+              className="border border-gray-300 rounded-md p-2"
             />
-            {errors.email && <p>{errors.email.message}</p>}
-            <input
-              type="password"
-              {...register("password", {
-                required: true,
-                maxLength: 10,
-                minLength: {
-                  value: 8,
-                  message: "Password must be at least 8 characters",
-                },
-              })}
-              placeholder="Password"
-            />
-            {errors.password && <p>{errors.password.message}</p>}
-          </div>
-          <button type="submit">
+          )}
+          {errors.username && <p>{errors.username.message}</p>}
+          <input
+            type="email"
+            {...register("email", {
+              required: "Email is required",
+              maxLength: 20,
+            })}
+            placeholder="Your email"
+            className="border border-gray-300 rounded-md p-2"
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+          <input
+            type="password"
+            {...register("password", {
+              required: true,
+              maxLength: 10,
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+            })}
+            placeholder="Password"
+            className="border border-gray-300 rounded-md p-2"
+          />
+          {errors.password && <p>{errors.password.message}</p>}
+          <button
+            type="submit"
+            className="bg-tomato text-white rounded-md p-2 text-center"
+          >
             {isLoading || loginLoading ? (
               <div className="loader"></div>
             ) : currState === "Sign Up" ? (
@@ -114,21 +111,35 @@ const LoginPopUp = ({ setShowLogin }) => {
               "Login"
             )}
           </button>
-          <div className="login-popup-condition">
-            <input type="checkbox" required />
-            <p>
-              By continuing, you agree to the terms of use & privacy policy.
-            </p>
-          </div>
+          {currState === "Sign Up" ? (
+            <div className="flex items-start w-full gap-2 ">
+              <input type="checkbox" required className="mt-1" />
+              <p>
+                By continuing, you agree to the terms of use & privacy policy.
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
           {currState === "Login" ? (
             <p>
               Create a new account?{" "}
-              <span onClick={() => setCurrState("Sign Up")}>Click here</span>
+              <span
+                onClick={() => setCurrState("Sign Up")}
+                className="text-tomato font-semibold cursor-pointer"
+              >
+                Click here
+              </span>
             </p>
           ) : (
             <p>
               Already have an account?{" "}
-              <span onClick={() => setCurrState("Login")}>Login here</span>
+              <span
+                onClick={() => setCurrState("Login")}
+                className="text-tomato font-semibold cursor-pointer"
+              >
+                Login here
+              </span>
             </p>
           )}
         </form>

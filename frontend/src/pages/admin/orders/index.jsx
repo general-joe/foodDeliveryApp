@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
 
 function Orders() {
-  const { data, isLoading } = restApi.useGetOrderQuery();
+  const { data, isLoading } = restApi.useGetOrdersQuery();
   console.log(data, "data");
   const [deleteOrder] = restApi.useDeleteOrderMutation();
   const handleDelete = async (orderId) => {

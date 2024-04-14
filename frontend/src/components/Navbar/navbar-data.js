@@ -20,11 +20,6 @@ export const navbarData = [
     url: "/admin-dashboard/orders",
   },
   {
-    id: 5,
-    title: "Delivery",
-    url: "/admin-dashboard/delivery",
-  },
-  {
     id: 0,
     title: "Go Home",
     url: "/",
