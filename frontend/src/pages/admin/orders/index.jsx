@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
 
 function Orders() {
-  const { data, isLoading } = restApi.useGetOrderQuery();
-  console.log(data, "data");
+  const { data, isLoading } = restApi.useGetOrdersQuery();
+
   const [deleteOrder] = restApi.useDeleteOrderMutation();
   const handleDelete = async (orderId) => {
     try {
@@ -27,9 +27,10 @@ function Orders() {
           <thead>
             <tr>
               <th className="text-lg">View Orders</th>
-              <th className="text-lg">Quantity</th>
-              <th className="text-lg">Sub Total</th>
               <th className="text-lg">Delivery Fee</th>
+              <th className="text-lg"> Amount</th>
+              <th className="text-lg"> Total</th>
+              <th className="text-lg">Status</th>
               <th className="text-lg">Edit</th>
               <th className="text-lg">Cancel</th>
             </tr>
@@ -48,15 +49,19 @@ function Orders() {
                 </td>
                 {/* Quantity */}
                 <td>
-                  <p>{order.quantity}</p>
+                  <p>{order.deliveryFee}</p>
                 </td>
-                {/* Total */}
+                {/* Sub Total */}
                 <td>
-                  <p>{order.total}</p>
+                  <p>{order.subTotal}</p>
+                </td>
+                {/*  Total */}
+                <td>
+                  <p>{order.subTotal + order.deliveryFee}</p>
                 </td>
                 {/* Price */}
                 <td>
-                  <p>{order.price}</p>
+                  <p>{order.status}</p>
                 </td>
                 <th>
                   <button className="btn btn-ghost btn-xs">

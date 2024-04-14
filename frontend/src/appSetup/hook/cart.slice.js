@@ -14,13 +14,27 @@ export const cartSlice = createSlice({
       toast.success("Item Added to Cart");
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter((id) => id !== action.payload);
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
       toast.error("Item Removed to Cart");
+    },
+    updateCartQty: (state, action) => {
+      const oldstate = state.cartItems;
+      const newupdate = action.payload;
+      const newArr = oldstate.map((obj) => {
+        if (obj.id === newupdate.id) {
+          return { ...obj, quantity: obj.quantity + newupdate.quantity };
+        }
+        return obj;
+      });
+      state.cartItems = newArr;
+      toast.success("Qty Updated");
     },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateCartQty } = cartSlice.actions;
 
 export const cartItems = (state) => state.cart.cartItems;
 
