@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 
 function Layout() {
   const [showLogin, setShowLogin] = useState(false);
-
   return (
     <div>
       {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
@@ -15,8 +14,8 @@ function Layout() {
         <div>
           <Outlet />
         </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

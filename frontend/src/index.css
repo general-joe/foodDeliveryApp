@@ -8,7 +8,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Outfit";
+  font-family: "Outfit", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -34,9 +34,9 @@ a {
   border-radius: 50%;
   background: linear-gradient(
         0deg,
-        rgb(0 0 0/50%) 30%,
-        #0000 0 70%,
-        rgb(0 0 0/100%) 0
+        rgba(237, 232, 232, 0.5) 30%,
+        #d8d4d400 0 70%,
+        rgb(196, 193, 193) 0
       )
       50%/8% 100%,
     linear-gradient(90deg, rgb(0 0 0/25%) 30%, #0000 0 70%, rgb(0 0 0/75%) 0)

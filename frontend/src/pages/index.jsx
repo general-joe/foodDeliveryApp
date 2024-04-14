@@ -17,6 +17,15 @@ const rootRoutes = createBrowserRouter(
           }}
         />
         <Route
+          path="order"
+          lazy={async () => {
+            const { default: PlaceOrder } = await import(
+              "./PlaceOrder/PlaceOrder"
+            );
+            return { Component: PlaceOrder };
+          }}
+        />
+        <Route
           path="cart"
           lazy={async () => {
             const { default: Cart } = await import("./Cart/Cart");
@@ -28,6 +37,61 @@ const rootRoutes = createBrowserRouter(
           lazy={async () => {
             const { default: AboutUs } = await import("./about-us");
             return { Component: AboutUs };
+          }}
+        />
+      </Route>
+      {/* Admin Dashboard */}
+      <Route
+        path="admin-dashboard"
+        lazy={async () => {
+          const { default: AdminLayout } = await import("./admin");
+          return { Component: AdminLayout };
+        }}
+      >
+        <Route
+          path="category"
+          lazy={async () => {
+            const { default: Category } = await import("./admin/category");
+            return { Component: Category };
+          }}
+        />
+        <Route
+          path="add-category"
+          lazy={async () => {
+            const { default: CreateCategory } = await import(
+              "./admin/category/createCategory"
+            );
+            return { Component: CreateCategory };
+          }}
+        />
+        <Route
+          path="clients"
+          lazy={async () => {
+            const { default: Clients } = await import("./admin/clients");
+            return { Component: Clients };
+          }}
+        />
+        <Route
+          path="orders"
+          lazy={async () => {
+            const { default: Orders } = await import("./admin/orders");
+            return { Component: Orders };
+          }}
+        />
+        <Route
+          path="recipe"
+          lazy={async () => {
+            const { default: Recipe } = await import("./admin/recipe");
+            return { Component: Recipe };
+          }}
+        />
+        <Route
+          path="add-recipe"
+          lazy={async () => {
+            const { default: CreateRecipe } = await import(
+              "./admin/recipe/createRecipe"
+            );
+            return { Component: CreateRecipe };
           }}
         />
       </Route>
