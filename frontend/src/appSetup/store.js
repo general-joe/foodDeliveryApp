@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-import { restApi } from "./api/index";
+import { restApi } from "./hook";
 import {
   persistReducer,
   FLUSH,
@@ -14,9 +14,8 @@ import {
   REGISTER,
   persistStore,
 } from "redux-persist";
-import userReducer from "./slice/user.slice";
-import cartReducer from "./slice/cart.slice";
-
+import userReducer from "./hook/user.slice";
+import cartReducer from "./hook/cart.slice";
 const createNoopStorage = () => {
   return {
     getItem(_key) {

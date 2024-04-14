@@ -8,6 +8,7 @@ import {
 const rootRoutes = createBrowserRouter(
   createRoutesFromElements(
     <>
+      {/* Users Layout */}
       <Route path="/" element={<Layout />}>
         <Route
           index
