@@ -83,11 +83,16 @@ const Navbar = ({ setShowLogin }) => {
           <span>{cartItems?.length}</span>
         </div>
         {user?.id ? (
-          <div className="relative flex">
-            <span className="m-1 btn">
-              <MdAccountCircle className="w-8 h-8" />
-            </span>
-            <ul className="p-2 absolute shadow-lg z-[1] bg-base-100 rounded-box w-52">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn m-1">
+              <span className="m-1 btn">
+                <MdAccountCircle className="w-8 h-8" />
+              </span>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
               <p>Username: {user?.username}</p>
               <p>Email: {user?.email}</p>
               <p>
