@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import "./LoginPopUp.css";
 import { assets } from "../../assets/assets";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import {
-  loginAdminFx,
-  registerAdminFx,
-} from "../../appSetup/slices/admin/adminFunc";
+import { restApi } from "../../appSetup/api";
+import { setUserInfo } from "../../appSetup/slice/user.slice";
 
 const LoginPopUp = ({ setShowLogin }) => {
   const dispatch = useDispatch();
-  const { loading, success, error } = useSelector((state) => state.admin);
   const [currState, setCurrState] = useState("Login");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [createClient, { isLoading }] = restApi.useCreateClientMutation();
+  const [login, { isLoading: loginLoading }] = restApi.useLoginUserMutation();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const userData =
       currState === "Login"
         ? {
@@ -31,22 +30,22 @@ const LoginPopUp = ({ setShowLogin }) => {
             email: data.email,
             password: data.password,
           };
-    const dataType =
+    const response =
       currState === "Login"
-        ? loginAdminFx(userData)
-        : registerAdminFx(userData);
-    dispatch(dataType);
+        ? await login(userData)
+        : await createClient(userData);
+    if (response.error) {
+      toast.error(response.error.message);
+      return;
+    }
+    if (currState === "Login") {
+      const { ...user } = response.data;
+      dispatch(setUserInfo(user));
+    }
+    console.log(response);
+    toast.success("Successful!");
+    setCurrState("Login");
   };
-
-  useEffect(() => {
-    if (success) {
-      toast.success("User Logged In, Successfully!");
-      setCurrState("Login");
-    }
-    if (error) {
-      toast.error(error.message);
-    }
-  }, [success, setCurrState, error]);
 
   return (
     <div className="login-popup">
@@ -103,7 +102,7 @@ const LoginPopUp = ({ setShowLogin }) => {
             {errors.password && <p>{errors.password.message}</p>}
           </div>
           <button type="submit">
-            {loading ? (
+            {isLoading || loginLoading ? (
               <div className="loader"></div>
             ) : currState === "Sign Up" ? (
               "Create Account"
