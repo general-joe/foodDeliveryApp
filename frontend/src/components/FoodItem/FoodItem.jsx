@@ -16,7 +16,12 @@ const FoodItem = ({ id, name, price, description, image }) => {
           alt=""
         />
         {!cartItems[id] ? (
-          <button onClick={() => addToCart(id)} className="add">
+          <button
+            onClick={() => {
+              dispatch(addToCart(id));
+            }}
+            className="add"
+          >
             <img src={assets.add_icon_white} alt="" />
           </button>
         ) : (
@@ -28,7 +33,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
             />
             <p>{cartItems[id]}</p>
             <img
-              onClick={() => dispatch(addToCart(id))}
+              onClick={() => {
+                dispatch(addToCart(id));
+              }}
               src={assets.add_icon_green}
               alt=""
             />
