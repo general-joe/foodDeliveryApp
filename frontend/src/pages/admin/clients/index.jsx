@@ -1,10 +1,21 @@
 import React from "react";
 import { restApi } from "../../../appSetup/hook";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
+import { toast } from "react-toastify";
 
 function Clients() {
   const { data, isLoading } = restApi.useGetClientsQuery();
   console.log(data, "data");
+  const [deleteClient] = restApi.useDeleteClientMutation();
+
+  const handleDelete = async (clientId) => {
+    try {
+      await deleteClient(clientId);
+    } catch (error) {
+      console.error("Failed to delete category:", error);
+      toast.error("Failed to delete category");
+    }
+  };
   return (
     <div className="">
       <div className="flex items-center justify-between px-4 py-5">
@@ -46,7 +57,10 @@ function Clients() {
                   </button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost btn-xs">
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => handleDelete(client.id)}
+                  >
                     <MdDelete />
                   </button>
                 </th>

@@ -7,6 +7,15 @@ import { restApi } from "../../../appSetup/hook";
 function Recipe() {
   const { data, isLoading } = restApi.useGetRecipiesQuery();
   console.log(data, "Data");
+  const [deleteRecipe] = restApi.useDeleteRecipeMutation();
+  const handleDelete = async (recipeId) => {
+    try {
+      await deleteRecipe(recipeId);
+    } catch (error) {
+      console.error("Failed to delete recipe:", error);
+    }
+  };
+
   return (
     <div className="">
       <div className="flex items-center justify-between px-4 py-5">
@@ -77,7 +86,10 @@ function Recipe() {
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() => handleDelete(recipe.id)}
+                    >
                       <MdDelete />
                     </button>
                   </th>

@@ -126,8 +126,8 @@ const AdminNavbar = () => {
     navigate("/");
   };
   return (
-    <nav className="w-64 h-full bg-[#aa6232] text-white flex px-4 py-5 flex-col gap-0 mx-0">
-      <div className="w-36 h-36 mx-0 bg-[#aa6232] rounded-lg mt-5">
+    <nav className="w-64 h-full bg-[#E96813] text-white flex px-4 py-5 flex-col gap-0 mx-0">
+      <div className="w-36 h-36 mx-0 bg-[#E96813] rounded-lg mt-5">
         {/* Header */}
         <Link to="/">
           <MdFoodBank className="w-full h-full " />
