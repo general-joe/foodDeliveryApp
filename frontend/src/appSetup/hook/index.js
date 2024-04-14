@@ -7,7 +7,6 @@ export const restApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
-      console.log(getState());
       // Get the token from the state or wherever it's stored
       const user = getState()?.user?.user;
       const token = user?.token;
@@ -58,11 +57,22 @@ export const restApi = createApi({
     }),
 
     createCategory: builder.mutation({
-      query: (data) => ({
-        url: "/category/add",
-        method: "POST",
-        body: data,
-      }),
+      query: (data) => {
+        const imageFile = data.item;
+        const formData = new FormData();
+        formData.append("item", imageFile);
+        formData.append("type", data.type);
+        return {
+          url: "/category/add",
+          method: "POST",
+          body: formData,
+        };
+      },
+      // query: (data) => ({
+      //   url: "/category/add",
+      //   method: "POST",
+      //   body: data,
+      // }),
     }),
     updateCategory: builder.mutation({
       query: (data) => ({
