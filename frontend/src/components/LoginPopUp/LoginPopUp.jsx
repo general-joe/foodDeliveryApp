@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./LoginPopUp.css";
 import { assets } from "../../assets/assets";
 import { useForm } from "react-hook-form";
@@ -41,12 +41,12 @@ const LoginPopUp = ({ setShowLogin }) => {
   useEffect(() => {
     if (success) {
       toast.success("User Logged In, Successfully!");
-      setShowLogin(false);
+      setCurrState("Login");
     }
     if (error) {
-      toast.error(error.data.message);
+      toast.error(error.message);
     }
-  }, [success, setShowLogin, error]);
+  }, [success, setCurrState, error]);
 
   return (
     <div className="login-popup">

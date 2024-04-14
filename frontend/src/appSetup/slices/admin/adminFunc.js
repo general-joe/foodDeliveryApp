@@ -12,7 +12,7 @@ export const registerAdminFx = createAsyncThunk(
       if (!error.response) {
         throw error;
       }
-      rejectWithValue(error.response);
+      rejectWithValue(error.message);
     }
   }
 );
@@ -28,7 +28,7 @@ export const loginAdminFx = createAsyncThunk(
       if (!error.response) {
         throw error;
       }
-      rejectWithValue(error.response);
+      rejectWithValue(error.message);
     }
   }
 );
