@@ -14,7 +14,7 @@ const Footer = () => {
             inventore aliquid, eligendi repellendus tempora! Velit doloremque
             quaerat distinctio enim voluptatum!
           </p>
-          <div className="footer-social-icons">
+          <div className="footer-social-icons flex items-center gap-3">
             <img src={assets.facebook_icon} alt="" />
             <img src={assets.twitter_icon} alt="" />
             <img src={assets.linkedin_icon} alt="" />
