@@ -35,7 +35,6 @@ const removeCartegory = async (id) => {
      return cartegory;
 };
 module.exports = {
-     addCartegory,
      getCartegories,
      getSingleCartegory,
      editCartegory,
