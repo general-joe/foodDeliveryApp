@@ -2,9 +2,10 @@ import { restApi } from "../../appSetup/hook";
 import { removeFromCart } from "../../appSetup/slice/cart.slice";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 const Cart = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const { data } = restApi.useGetRecipiesQuery();
 
@@ -32,7 +33,10 @@ const Cart = () => {
                   <p>GH{item.price}</p>
                   <p>{1}</p>
                   <p>GH{item.price * 1}</p>
-                  <p onClick={() => removeFromCart(item.id)} className="cross">
+                  <p
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    className="cross"
+                  >
                     x
                   </p>
                 </div>
