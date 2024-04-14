@@ -15,7 +15,14 @@ const {
 exports.register_cartegory = async (req, res, next) => {
      try {
           const data = req.body;
-          const category = await addCategory(data);
+          const category = await prisma.category.create({
+               data: {
+                    item: await addCategory(data),
+                    type: type
+               },
+               
+             })
+             return category;
           res.status(httpstatus.OK).json({
                category,
           });
