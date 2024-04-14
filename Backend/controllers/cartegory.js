@@ -10,12 +10,12 @@ const {
      editCartegory,
      removeCartegory,
 } = require("../helpers/cartegory");
+const { category } = require("../utils/prismaUtil");
 // add cartegory
 
 exports.register_cartegory = async (req, res, next) => {
      try {
-          const data = req.body;
-          const category = await addCategory(data);
+          await addCategory();
           res.status(httpstatus.OK).json({
                category,
           });
