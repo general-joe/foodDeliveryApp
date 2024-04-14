@@ -4,7 +4,7 @@ const cloudinaryModule = require('cloudinary');
 
 const cloudinary = cloudinaryModule.v2;
 
-// cloudinary function
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
