@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 const helmet = require("helmet");
-const bodyParser = require('body-parser');
+
 
 const fs = require("fs");
 
@@ -55,8 +55,7 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use((err, req, res, next) => {
      res.status(err.status || 500).json({
