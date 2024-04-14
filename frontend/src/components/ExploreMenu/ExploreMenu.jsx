@@ -2,7 +2,6 @@ import "./ExploreMenu.css";
 import { restApi } from "../../appSetup/api";
 const ExploreMenu = ({ category, setCategory }) => {
   const { data, isLoading } = restApi.useGetCategoriesQuery();
-  console.log(data);
   return (
     <div className="explore-menu" id="explore-menu">
       <h1>Explore Our Menu</h1>
@@ -11,9 +10,11 @@ const ExploreMenu = ({ category, setCategory }) => {
         mission is to satisfy your cravings and elevate your dining experience,
         one delicious meal at a time.{" "}
       </p>
-      {isLoading && <div className="loader"></div>}
+
       <div className="explore-menu-list">
-        {data?.cartegories.length > 0 ? (
+        {isLoading ? (
+          <div className="loader"></div>
+        ) : data?.cartegories.length > 0 ? (
           data?.cartegories?.map((item, index) => {
             return (
               <div
