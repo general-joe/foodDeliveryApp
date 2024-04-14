@@ -76,8 +76,7 @@ exports.editCartegory = async (req, res, next) => {
 };
 exports.removeCartegory = async (req, res, next) => {
   try {
-    const { id } = req.param;
-    const cartegory = await removeCartegory(id);
+    const cartegory = await removeCartegory(req.params.id);
     res.status(httpstatus.OK).json({
       cartegory,
     });
