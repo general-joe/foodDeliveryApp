@@ -15,10 +15,10 @@ const { category } = require("../utils/prismaUtil");
 
 exports.register_cartegory = async (req, res, next) => {
      try {
-          await addCategory();
-          res.status(httpstatus.OK).json({
-               category,
-          });
+          await addCategory(
+               req.body,
+          );
+        
          
          
      } catch (error) {
