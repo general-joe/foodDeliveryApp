@@ -3,7 +3,7 @@ const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
 
 const {
-     addDElivery,
+     addDelivery,
      getDeliveries,
      getDeliveryByClientId,
      getSingleDelivery,
@@ -15,7 +15,7 @@ const {
 exports.saveDeliveryInfo = async (req, res, next) => {
      try {
           const data = req.body;
-          const delivery = await addDElivery(data);
+          const delivery = await addDelivery(data);
           res.status(httpstatus.CREATED).json({
                delivery,
           });
