@@ -38,8 +38,8 @@ model recipe {
   type        String
   description String
   quantity    Int       @default(1)
-  total       Float       @default(0)
-  price       Float    @default("0.00")
+  total       Float       @default(0.00)
+  price       Float    @default(0.00)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   cartegory   category? @relation(fields: [cartegoryId], references: [id])
@@ -48,8 +48,8 @@ model recipe {
 
 model order {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  subTotal    Float    @default("0.00")
-  deliveryFee Float    @default("0.00")
+  subTotal    Float    @default(0.00)
+  deliveryFee Float    @default(0.00)
   recipe      Json
   delivery    delivery?
   createdAt   DateTime  @default(now())
