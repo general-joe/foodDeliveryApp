@@ -17,7 +17,7 @@ exports.register_cartegory = async (req, res, next) => {
           const item = req.file ? req.file.path : undefined;
           if (item) {
               const uploaded = await cloudinary.uploader.upload(item, {
-                  folder: 'familytree/' + type + '/images'
+                  folder: 'familytree/' + data.type + '/images'
               });
               if (uploaded) {
                   data.item = uploaded.secure_url;
