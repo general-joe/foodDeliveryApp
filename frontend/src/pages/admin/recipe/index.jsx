@@ -2,14 +2,14 @@ import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 
 function Recipe() {
   const { data, isLoading } = restApi.useGetRecipiesQuery();
   console.log(data, "Data");
   return (
     <div className="">
-      <div className="flex items-center justify-between py-5 px-4">
+      <div className="flex items-center justify-between px-4 py-5">
         <h1 className="text-2xl font-bold ">Recipes</h1>
         <p className="flex items-center gap-2 hover:underline hover:cursor-pointer">
           Create recipe
@@ -45,7 +45,7 @@ function Recipe() {
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
-                        <div className="mask mask-squircle bg-slate-200 w-12 h-12">
+                        <div className="w-12 h-12 mask mask-squircle bg-slate-200">
                           <img src={recipe.item} alt="category-icon" />
                         </div>
                       </div>

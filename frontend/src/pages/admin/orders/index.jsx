@@ -2,14 +2,14 @@ import React from "react";
 import { IoFastFood } from "react-icons/io5";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 
 function Orders() {
   const { data, isLoading } = restApi.useGetOrderQuery();
   console.log(data, "data");
   return (
     <div className="">
-      <div className="flex items-center justify-between py-5 px-4">
+      <div className="flex items-center justify-between px-4 py-5">
         <h1 className="text-2xl font-bold ">Orders</h1>
       </div>
       {/* Table */}

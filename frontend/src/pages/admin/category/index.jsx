@@ -2,7 +2,7 @@ import React from "react";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 import { useNavigate } from "react-router-dom";
 
 function Category() {

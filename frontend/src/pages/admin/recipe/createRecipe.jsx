@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Form } from "../../../components/forms";
 import { useNavigate } from "react-router-dom";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 import { toast } from "react-toastify";
 
 function CreateRecipe() {
@@ -63,11 +63,11 @@ function CreateRecipe() {
   };
   return (
     <div className="w-[60%] h-auto mx-auto my-10 p-3">
-      <h1 className="text-4xl font-bold py-5">
+      <h1 className="py-5 text-4xl font-bold">
         Create a recipe
         <Link
           to="/admin-dashboard/recipe"
-          className="pl-10 underline font-normal text-sm"
+          className="pl-10 text-sm font-normal underline"
         >
           Go back
         </Link>
