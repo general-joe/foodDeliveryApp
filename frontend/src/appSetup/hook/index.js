@@ -59,7 +59,7 @@ export const restApi = createApi({
 
     createCategory: builder.mutation({
       query: (data) => ({
-        url: "/category/signUp",
+        url: "/category/add",
         method: "POST",
         body: data,
       }),
