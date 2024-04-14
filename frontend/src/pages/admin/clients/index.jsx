@@ -1,5 +1,5 @@
 import React from "react";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 
 function Clients() {
@@ -7,7 +7,7 @@ function Clients() {
   console.log(data, "data");
   return (
     <div className="">
-      <div className="flex items-center justify-between py-5 px-4">
+      <div className="flex items-center justify-between px-4 py-5">
         <h1 className="text-2xl font-bold ">Clients</h1>
       </div>
       {/* Table */}

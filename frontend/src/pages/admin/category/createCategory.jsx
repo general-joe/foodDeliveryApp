@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Form } from "../../../components/forms";
-import { restApi } from "../../../appSetup/api";
+import { restApi } from "../../../appSetup/hook";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

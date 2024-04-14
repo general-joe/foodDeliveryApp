@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getLocalStorageItem } from "./local-storage";
+
 const BASE_URL = "https://tomato-x0w7.onrender.com/api/v1/web";
 
 export const restApi = createApi({
@@ -31,6 +31,9 @@ export const restApi = createApi({
     }),
     getOrders: builder.query({
       query: () => `/order/list`,
+    }),
+    getClients: builder.query({
+      query: () => `/client/list`,
     }),
     getOrder: builder.query({
       query: (id) => `/order/${id}`,
