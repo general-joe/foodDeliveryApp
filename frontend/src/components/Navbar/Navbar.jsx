@@ -19,7 +19,6 @@ const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
-
   return (
     <div className="navbar">
       <Link to="/">
@@ -62,7 +61,7 @@ const Navbar = ({ setShowLogin }) => {
         >
           About Us
         </a>
-        {user?.username === "Gideon Appiah" ? (
+        {user?.role === "Admin" ? (
           <a
             href="/admin-dashboard"
             onClick={() => setMenu("admin-dashboard")}
@@ -85,15 +84,12 @@ const Navbar = ({ setShowLogin }) => {
         {user?.id ? (
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn m-1">
-              <span className="m-1 btn">
-                <MdAccountCircle className="w-8 h-8" />
-              </span>
+              <MdAccountCircle className="w-8 h-8" />
             </div>
             <ul
               tabIndex={0}
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <p>Username: {user?.username}</p>
               <p>Email: {user?.email}</p>
               <p>
                 <button
