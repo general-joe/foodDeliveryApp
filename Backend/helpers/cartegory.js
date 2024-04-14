@@ -34,7 +34,7 @@ const editCartegory = async (id, data) => {
 const removeCartegory = async (id) => {
   const cartegory = await prisma.category.delete({
     where: {
-      id,
+      id
     },
   });
   return cartegory;
