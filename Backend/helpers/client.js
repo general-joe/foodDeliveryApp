@@ -43,6 +43,7 @@ const login = async (email) => {
                     role: true,
                     id: true,
                     email: true,
+                    password: true,
           
                }
           });
