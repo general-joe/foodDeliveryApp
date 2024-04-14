@@ -164,6 +164,13 @@ const AdminNavbar = () => {
 
 const MobileNavbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  };
   return (
     // Main navbar
     <nav className="w-full h-16 bg-[#aa6232] text-white flex px-5 py-5 items-center justify-between">
@@ -192,6 +199,9 @@ const MobileNavbar = () => {
               </Link>
             </li>
           ))}
+          <li className="text-black">
+            <Avatar data={user} onLogout={handleLogout} />
+          </li>
         </ul>
       </details>
     </nav>
