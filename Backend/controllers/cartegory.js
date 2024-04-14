@@ -14,7 +14,7 @@ const {
 
 exports.register_cartegory = async (req, res, next) => {
      try {
-          
+          const data = req.body;
           const category = await addCategory(data);
           res.status(httpstatus.OK).json({
                category,
