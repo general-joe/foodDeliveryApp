@@ -34,6 +34,20 @@ export function Form({ data, onSubmit, title, loading, login }) {
             {...register(key, { required: field.validationMsg })}
           />
         );
+      case "select":
+        return (
+          <select
+            key={key}
+            {...register(key, { required: field.validationMsg })}
+            className="border-b w-full border input-bordered rounded-md outline-none bg-transparent text-black my-3 py-4 px-2"
+          >
+            {field.options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        );
       default:
         return null;
     }

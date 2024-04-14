@@ -7,6 +7,11 @@ import { toast } from "react-toastify";
 function CreateRecipe() {
   const navigate = useNavigate();
   const [createRecipe, { isLoading }] = restApi.useCreateRecipeMutation();
+  const { data: cartegories } = restApi.useGetCategoriesQuery();
+  const categoriesOptions = cartegories?.categories?.map((category) => ({
+    value: category.id,
+    label: category.type,
+  }));
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("item", data.image[0]);
@@ -55,6 +60,12 @@ function CreateRecipe() {
       label: "Recipe Image",
       type: "file",
       validationMsg: "Please select an image",
+    },
+    category: {
+      label: "Category",
+      options: categoriesOptions || [],
+      validationMsg: "Please select a category",
+      type: "select",
     },
   };
   return (

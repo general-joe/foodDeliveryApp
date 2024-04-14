@@ -142,7 +142,7 @@ export const members = [
     name: "Richard Bonsong",
     image: member_478,
     role: "Member",
-    indexNumber: "5221040478",
+    indexNumber: "5211040478",
   },
 ];
 // Export all assets
