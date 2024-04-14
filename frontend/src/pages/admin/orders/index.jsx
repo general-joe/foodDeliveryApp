@@ -1,12 +1,10 @@
-import React from "react";
 import { IoFastFood } from "react-icons/io5";
-import { MdDelete, MdModeEditOutline } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
 
 function Orders() {
   const { data, isLoading } = restApi.useGetOrdersQuery();
-  console.log(data, "data");
 
   const [deleteOrder] = restApi.useDeleteOrderMutation();
   const handleDelete = async (orderId) => {

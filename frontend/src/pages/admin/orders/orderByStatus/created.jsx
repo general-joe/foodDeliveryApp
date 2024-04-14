@@ -9,9 +9,11 @@ function CreatedOrder() {
   const { data, isLoading } = restApi.useGetOrdersQuery();
   const [updateOrderStatus, { isLoading: updateLoading }] =
     restApi.useUpdateOrderStatusMutation();
+
   const createdOrders = data.orders?.filter(
-    (order) => order.status === "CREATED" || []
+    (order) => order.status === "CREATED"
   );
+
   const [selectedOrder, setSelectedOrder] = useState([]);
 
   const handleOrderSelect = (orderId) => {
@@ -39,6 +41,7 @@ function CreatedOrder() {
       toast.error("Status unable to update");
     }
   };
+  console.log(createdOrders);
 
   return (
     <div className="">
@@ -46,7 +49,10 @@ function CreatedOrder() {
         <h1 className="p-5 text-3xl font-bold">Created Orders</h1>
         {/* React-Select */}
         <div className="">
-          <button className="btn btn-ghost " onClick={() => handleSubmit()}>
+          <button
+            className="btn btn-ghost bg-[#E96813] text-white rounded-md p-2 text-center"
+            onClick={() => handleSubmit()}
+          >
             {updateLoading && <div className="loader"></div>}
             Process
           </button>
