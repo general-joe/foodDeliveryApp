@@ -7,20 +7,22 @@ import { toast } from "react-toastify";
 function CreateRecipe() {
   const navigate = useNavigate();
   const [createRecipe, { isLoading }] = restApi.useCreateRecipeMutation();
-  const { data: cartegories } = restApi.useGetCategoriesQuery();
-  const categoriesOptions = cartegories?.categories?.map((category) => ({
+  const { data } = restApi.useGetCategoriesQuery();
+
+  const categoriesOptions = data?.cartegories?.map((category) => ({
     value: category.id,
     label: category.type,
   }));
+
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("item", data.image[0]);
+    formData.append("item", data.item[0]);
     formData.append("title", data.title);
     formData.append("description", data.description);
     formData.append("quantity", data.quantity);
     formData.append("total", data.total);
     formData.append("price", data.price);
-
+    formData.append("cartegoryId", data.category);
     const response = await createRecipe(formData);
     if (response.error) {
       toast(response.error);

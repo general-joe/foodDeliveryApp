@@ -1,23 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../../../components/forms";
 import { restApi } from "../../../appSetup/hook";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 function CreateCategory() {
   const navigate = useNavigate();
+
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
+
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append("item", data.image[0]);
-    formData.append("type", data.type);
-    const response = await createCategory(formData);
-    if (response.error) {
-      toast(response.error);
-      return;
+    const response = await createCategory(data);
+    console.log(data);
+    if (!response.error) {
+      toast.success("Successful!");
+      navigate("/admin-dashboard/category");
     }
-    toast.success("Successful!");
-    navigate("/admin-dashboard/category");
+    toast(response.error);
   };
   const category_data = {
     type: {
@@ -25,7 +23,7 @@ function CreateCategory() {
       placeholder: "Enter category type",
       type: "text",
     },
-    image: {
+    item: {
       label: "Image",
       placeholder: "Upload picture",
       type: "file",

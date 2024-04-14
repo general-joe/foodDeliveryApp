@@ -15,8 +15,7 @@ function Category() {
       await deleteCategory(categoryId);
       toast.error("Category deleted successfully");
     } catch (error) {
-      console.error("Failed to delete category:", error);
-      toast.error("Failed to delete category");
+      toast.error("Failed to delete category:", error);
     }
   };
 

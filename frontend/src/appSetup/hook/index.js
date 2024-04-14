@@ -61,7 +61,7 @@ export const restApi = createApi({
 
     createCategory: builder.mutation({
       query: (data) => {
-        const imageFile = data.item;
+        const imageFile = data.item[0];
         const formData = new FormData();
         formData.append("item", imageFile);
         formData.append("type", data.type);
