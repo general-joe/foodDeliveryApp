@@ -75,11 +75,13 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
-        <div className="relative p-3 navbar-search-icon">
+        <div className="relative  p-3 navbar-search-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <span>{cartItems?.length}</span>
+          <span className="absolute top-0 right-0 rounded-full bg-[#E96813] text-white badge-md ">
+            {cartItems?.length}
+          </span>
         </div>
         {user?.id ? (
           <div className="dropdown dropdown-end">
