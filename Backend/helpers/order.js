@@ -48,6 +48,22 @@ const editOrder = async (id, data) => {
   });
   return order;
 };
+const editOrderStatus = async (data) => {
+  const { ids, status } = data;
+
+  const order = await prisma.order.updateMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+    data: {
+      status,
+    },
+  });
+  return order;
+};
+
 const removeOrder = async (id) => {
   const order = await prisma.order.delete({
     where: {
@@ -62,4 +78,5 @@ module.exports = {
   loadOrder,
   editOrder,
   removeOrder,
+  editOrderStatus,
 };
