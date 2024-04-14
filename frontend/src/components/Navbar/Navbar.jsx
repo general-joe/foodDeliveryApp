@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { MdAccountCircle } from "react-icons/md";
-import { resetData } from "../../appSetup/slices/admin";
+import { reset, resetData } from "../../appSetup/slices/admin";
 import { useDispatch } from "react-redux";
+import { RiAccountCircleFill } from "react-icons/ri";
 
 const Navbar = ({ setShowLogin }) => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState("home");
   const { admin } = useSelector((state) => state.admin);
+  console.log(admin);
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
+
   return (
     <div className="navbar">
       <Link to="/">
@@ -53,6 +59,17 @@ const Navbar = ({ setShowLogin }) => {
         >
           About Us
         </a>
+        {admin?.role === "ADMIN" || admin?.role === "admin" ? (
+          <a
+            href="/admin-dashboard"
+            onClick={() => setMenu("admin-dashboard")}
+            className=""
+          >
+            Dashboard
+          </a>
+        ) : (
+          ""
+        )}
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
@@ -62,18 +79,27 @@ const Navbar = ({ setShowLogin }) => {
           </Link>
         </div>
         {admin ? (
-          <div className="relative">
-            <span className="m-1 btn">
-              <MdAccountCircle className="w-8 h-8" />
-            </span>
-            <ul className="p-2 absolute shadow-lg z-[1] bg-base-100 rounded-box w-52">
-              <p>Username: {admin?.username}</p>
-              <p>Email: {admin?.email}</p>
-              <p>
-                <button className="" onClick={() => dispatch(resetData())}>
-                  Logout
-                </button>
-              </p>
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn m-1">
+              <RiAccountCircleFill className="w-10 h-10" />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <p>{admin?.username}</p>
+              </li>
+              <li>
+                <p>{admin?.email}</p>
+              </li>
+              <li>
+                <p>
+                  <button className="" onClick={() => dispatch(resetData())}>
+                    Logout
+                  </button>
+                </p>
+              </li>
             </ul>
           </div>
         ) : (

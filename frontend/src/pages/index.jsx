@@ -40,6 +40,13 @@ const rootRoutes = createBrowserRouter(
           }}
         />
       </Route>
+      <Route
+        path="admin-dashboard"
+        lazy={async () => {
+          const { default: AdminLayout } = await import("./admin");
+          return { Component: AdminLayout };
+        }}
+      />
     </>
   )
 );

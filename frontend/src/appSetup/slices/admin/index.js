@@ -41,7 +41,7 @@ export const adminSlice = createSlice({
       })
       .addCase(registerAdminFx.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.msg;
+        state.error = action.error;
       })
       .addCase(loginAdminFx.pending, (state) => {
         state.loading = true;
@@ -55,7 +55,7 @@ export const adminSlice = createSlice({
       .addCase(loginAdminFx.rejected, (state, action) => {
         state.loading = false;
         state.adminDetails = [];
-        state.error = action.error.msg;
+        state.error = action.error;
       });
   },
 });
