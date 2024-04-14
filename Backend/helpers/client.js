@@ -39,6 +39,12 @@ const login = async (email) => {
                where: {
                     email,
                },
+               select: {
+                    role: true,
+                    id: true,
+                    email: true,
+          
+               }
           });
           return client;
 };
