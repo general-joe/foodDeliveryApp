@@ -13,7 +13,12 @@ import { RiMenuLine } from "react-icons/ri";
 import classNames from "classnames";
 import { navbarData } from "./navbar-data";
 import Avatar from "../avatar";
-
+export const getTotalQty = (products) => {
+  return products?.reduce(
+    (accumulator, product) => accumulator + Number(product.quantity),
+    0
+  );
+};
 const Navbar = ({ setShowLogin }) => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState("home");
@@ -75,17 +80,17 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
-        <div className="relative  p-3 navbar-search-icon">
+        <div className="relative p-3 navbar-search-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
           <span className="absolute top-0 right-0 rounded-full bg-[#E96813] text-white badge-md ">
-            {cartItems?.length}
+            {getTotalQty(cartItems)}
           </span>
         </div>
         {user?.id ? (
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1">
+            <div tabIndex={0} role="button" className="m-1 btn">
               <MdAccountCircle className="w-8 h-8" />
             </div>
             <ul

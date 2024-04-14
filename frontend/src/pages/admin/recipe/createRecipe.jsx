@@ -23,8 +23,6 @@ function CreateRecipe() {
     formData.append("total", data.total);
     formData.append("price", data.price);
     formData.append("categoryId", data.category);
-
-    console.log(data);
     const response = await createRecipe(formData);
     if (response.error) {
       toast("Could not create recipe");
