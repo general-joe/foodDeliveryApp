@@ -32,27 +32,25 @@ model category {
 }
 
 model recipe {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   item        String?
   title       String
-  type String
+  type        String
   description String
-  quantity    Int        @default(1)
-  total       Int        @default(0)
-  price       String     @default("0.00")
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  quantity    Int       @default(1)
+  total       Int       @default(0)
+  price       String    @default("0.00")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   cartegory   category? @relation(fields: [cartegoryId], references: [id])
-  cartegoryId String     @db.ObjectId
-  order       order?     @relation(fields: [orderId], references: [id])
-  orderId     String?    @db.ObjectId
+  cartegoryId String    @db.ObjectId
 }
 
 model order {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   subTotal    String    @default("0.00")
   deliveryFee String    @default("0.00")
-  recipe      recipe[]
+  recipe      Json
   delivery    delivery?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
