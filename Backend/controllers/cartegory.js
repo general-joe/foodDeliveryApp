@@ -1,6 +1,7 @@
 const CustomError = require("../utils/customErrorClass");
 const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
+const cloudinary = require("../utils/cloudinary");
 
 
 const {
@@ -16,6 +17,15 @@ const { category } = require("../utils/prismaUtil");
 exports.register_cartegory = async (req, res, next) => {
      try {
           const data = req.body;
+          const item  = req.file ? req.file.path : undefined;
+        if (item) {
+            const uploaded = await cloudinary.uploader.upload(item, {
+                folder: 'images'
+            });
+            if (uploaded) {
+                data.item = uploaded.secure_url;
+            }
+        }
           await addCategory(
                data
           );
