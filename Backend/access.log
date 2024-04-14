@@ -96,3 +96,8 @@
 ::1 - - [14/Apr/2024:11:05:47 +0000] "POST /api/v1/web/category/add HTTP/1.1" 500 408 "-" "PostmanRuntime/7.37.3"
 ::1 - - [14/Apr/2024:11:42:39 +0000] "POST /api/v1/web/client/login HTTP/1.1" 500 397 "-" "PostmanRuntime/7.37.3"
 ::1 - - [14/Apr/2024:11:43:25 +0000] "POST /api/v1/web/client/login HTTP/1.1" 200 242 "-" "PostmanRuntime/7.37.3"
+::1 - - [14/Apr/2024:11:44:03 +0000] "POST /api/v1/web/client/login HTTP/1.1" 500 831 "-" "PostmanRuntime/7.37.3"
+::1 - - [14/Apr/2024:11:45:01 +0000] "POST /api/v1/web/client/login HTTP/1.1" 200 254 "-" "PostmanRuntime/7.37.3"
+::1 - - [14/Apr/2024:11:56:40 +0000] "POST /api/v1/web/category/add HTTP/1.1" 500 1342 "-" "PostmanRuntime/7.37.3"
+::1 - - [14/Apr/2024:11:57:35 +0000] "POST /api/v1/web/category/add HTTP/1.1" 500 1327 "-" "PostmanRuntime/7.37.3"
+::1 - - [14/Apr/2024:12:03:19 +0000] "POST /api/v1/web/category/add HTTP/1.1" 500 1222 "-" "PostmanRuntime/7.37.3"
