@@ -34,7 +34,10 @@ export const restApi = createApi({
       query: () => `/order/list`,
     }),
     getOrder: builder.query({
-      query: (id) => `/order/${id}`,
+      query: () => `/order/list`,
+    }),
+    getClients: builder.query({
+      query: () => `/client/list`,
     }),
     createClient: builder.mutation({
       query: (data) => ({

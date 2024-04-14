@@ -65,7 +65,10 @@ function CreateRecipe() {
     <div className="w-[60%] h-auto mx-auto my-10 p-3">
       <h1 className="text-4xl font-bold py-5">
         Create a recipe
-        <Link to="/recipe" className="pl-10 underline font-normal text-sm">
+        <Link
+          to="/admin-dashboard/recipe"
+          className="pl-10 underline font-normal text-sm"
+        >
           Go back
         </Link>
       </h1>

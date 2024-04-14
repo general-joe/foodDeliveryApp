@@ -3,11 +3,16 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { MdAccountCircle } from "react-icons/md";
+import { MdAccountCircle, MdFoodBank } from "react-icons/md";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
 import { logoutUser } from "../../appSetup/hook/user.slice";
+import { RiMenuLine } from "react-icons/ri";
+import classNames from "classnames";
+import { navbarData } from "./navbar-data";
+import Avatar from "../avatar";
 
 const Navbar = ({ setShowLogin }) => {
   const dispatch = useDispatch();
