@@ -19,7 +19,6 @@ const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
-
   return (
     <div className="navbar">
       <Link to="/">
@@ -62,7 +61,7 @@ const Navbar = ({ setShowLogin }) => {
         >
           About Us
         </a>
-        {user?.username === "Gideon Appiah" ? (
+        {user?.role === "Admin" ? (
           <a
             href="/admin-dashboard"
             onClick={() => setMenu("admin-dashboard")}
@@ -76,19 +75,23 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
-        <div className="relative p-3 navbar-search-icon">
+        <div className="relative  p-3 navbar-search-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <span>{cartItems?.length}</span>
+          <span className="absolute top-0 right-0 rounded-full bg-[#E96813] text-white badge-md ">
+            {cartItems?.length}
+          </span>
         </div>
         {user?.id ? (
-          <div className="relative flex">
-            <span className="m-1 btn">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn m-1">
               <MdAccountCircle className="w-8 h-8" />
-            </span>
-            <ul className="p-2 absolute shadow-lg z-[1] bg-base-100 rounded-box w-52">
-              <p>Username: {user?.username}</p>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
               <p>Email: {user?.email}</p>
               <p>
                 <button
@@ -123,8 +126,8 @@ const AdminNavbar = () => {
     navigate("/");
   };
   return (
-    <nav className="w-64 h-full bg-[#aa6232] text-white flex px-4 py-5 flex-col gap-0 mx-0">
-      <div className="w-36 h-36 mx-0 bg-[#aa6232] rounded-lg mt-5">
+    <nav className="w-64 h-full bg-[#E96813] text-white flex px-4 py-5 flex-col gap-0 mx-0">
+      <div className="w-36 h-36 mx-0 bg-[#E96813] rounded-lg mt-5">
         {/* Header */}
         <Link to="/">
           <MdFoodBank className="w-full h-full " />

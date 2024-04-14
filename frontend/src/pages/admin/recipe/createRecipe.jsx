@@ -1,26 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../../../components/forms";
-import { useNavigate } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
 import { toast } from "react-toastify";
 
 function CreateRecipe() {
   const navigate = useNavigate();
   const [createRecipe, { isLoading }] = restApi.useCreateRecipeMutation();
+  const { data: cartegories } = restApi.useGetCategoriesQuery();
+  const categoriesOptions = cartegories?.categories?.map((category) => ({
+    value: category.id,
+    label: category.type,
+  }));
   const onSubmit = async (data) => {
     const formData = new FormData();
-    const image = formData.append("image", data.image[0]);
+    formData.append("item", data.image[0]);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("quantity", data.quantity);
+    formData.append("total", data.total);
+    formData.append("price", data.price);
 
-    const recipeData = {
-      title: data.title,
-      description: data.description,
-      quantity: data.quantity,
-      total: data.total,
-      price: data.price,
-      item: image,
-    };
-    const response = await createRecipe(recipeData);
+    const response = await createRecipe(formData);
     if (response.error) {
       toast(response.error);
       return;
@@ -59,6 +60,12 @@ function CreateRecipe() {
       label: "Recipe Image",
       type: "file",
       validationMsg: "Please select an image",
+    },
+    category: {
+      label: "Category",
+      options: categoriesOptions || [],
+      validationMsg: "Please select a category",
+      type: "select",
     },
   };
   return (

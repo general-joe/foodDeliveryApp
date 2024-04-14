@@ -34,6 +34,20 @@ export function Form({ data, onSubmit, title, loading, login }) {
             {...register(key, { required: field.validationMsg })}
           />
         );
+      case "select":
+        return (
+          <select
+            key={key}
+            {...register(key, { required: field.validationMsg })}
+            className="border-b w-full border input-bordered rounded-md outline-none bg-transparent text-black my-3 py-4 px-2"
+          >
+            {field.options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        );
       default:
         return null;
     }
@@ -97,7 +111,7 @@ export const Button = ({ title, loading }) => {
   ) : (
     <button
       type="submit"
-      className="bg-[#901AD8] py-3 px-1 rounded-md text-white font-semibold w-full mt-5"
+      className="bg-[#E96813] py-3 px-1 rounded-md text-white font-semibold w-full mt-5"
     >
       {title}
     </button>

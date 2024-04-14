@@ -7,6 +7,14 @@ import { restApi } from "../../../appSetup/hook";
 function Orders() {
   const { data, isLoading } = restApi.useGetOrderQuery();
   console.log(data, "data");
+  const [deleteOrder] = restApi.useDeleteOrderMutation();
+  const handleDelete = async (orderId) => {
+    try {
+      await deleteOrder(orderId);
+    } catch (error) {
+      console.error("Failed to delete order:", error);
+    }
+  };
   return (
     <div className="">
       <div className="flex items-center justify-between px-4 py-5">
@@ -23,7 +31,7 @@ function Orders() {
               <th className="text-lg">Sub Total</th>
               <th className="text-lg">Delivery Fee</th>
               <th className="text-lg">Edit</th>
-              <th className="text-lg">Delete</th>
+              <th className="text-lg">Cancel</th>
             </tr>
           </thead>
           {/* Table Body */}
@@ -56,7 +64,10 @@ function Orders() {
                   </button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost btn-xs">
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => handleDelete(order.id)}
+                  >
                     <MdDelete />
                   </button>
                 </th>
