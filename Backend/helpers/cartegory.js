@@ -1,14 +1,14 @@
 const prisma = require("../utils/prismaUtil");
 
 const addCartegory = async (data) => {
-     const cartegory = await prisma.cartegory.create({
+     const cartegory = await prisma.category.create({
           data,
      });
      return cartegory;
 };
 
 const getCartegories = async () => {
-     const cartegories = await prisma.cartegory.findMany({
+     const cartegories = await prisma.category.findMany({
           orderBy: {
                createdAt: "desc",
           },
@@ -16,7 +16,7 @@ const getCartegories = async () => {
      return cartegories;
 };
 const getSingleCartegory = async (id) => {
-     const cartegory = await prisma.cartegory.findUnique({
+     const cartegory = await prisma.category.findUnique({
           where: {
                id,
           },
@@ -25,7 +25,7 @@ const getSingleCartegory = async (id) => {
 };
 
 const editCartegory = async (id, data) => {
-     const cartegory = await prisma.cartegory.update({
+     const cartegory = await prisma.category.update({
           where: {
                id
           },
@@ -34,7 +34,7 @@ const editCartegory = async (id, data) => {
      return cartegory;
 };
 const removeCartegory = async (id) => {
-     const cartegory = await prisma.cartegory.delete({
+     const cartegory = await prisma.category.delete({
           where: {
                id,
           },
