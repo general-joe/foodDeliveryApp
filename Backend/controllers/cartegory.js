@@ -15,7 +15,7 @@ const { category } = require("../utils/prismaUtil");
 
 exports.register_cartegory = async (req, res, next) => {
      try {
-          await addCategory(data);
+          await addCategory();
           res.status(httpstatus.OK).json({
                category,
           });
