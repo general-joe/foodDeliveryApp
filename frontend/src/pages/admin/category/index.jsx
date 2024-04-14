@@ -3,8 +3,10 @@ import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { restApi } from "../../../appSetup/api";
+import { useNavigate } from "react-router-dom";
 
 function Category() {
+  const navigate = useNavigate();
   const { data, isLoading } = restApi.useGetCategoriesQuery();
   console.log(data, "Data");
   return (
