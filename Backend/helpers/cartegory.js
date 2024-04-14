@@ -1,7 +1,8 @@
 const prisma = require("../utils/prismaUtil");
 const cloudinary = require("../utils/cloudinary");
 const addCategory = async(req,res, next) =>{
-     const type = req.body.type;
+     const data = req.body;
+     data.type = req.body.type;
      const item = req.file ? req.file.path : undefined;
      if (item) {
           const uploaded = await cloudinary.uploader.upload(item, {
@@ -13,8 +14,10 @@ const addCategory = async(req,res, next) =>{
       }
       const category = await prisma.category.create({
          
-               item: item,
-               type: type,
+               data: {
+                    item: item,
+                    type: type
+                    },
 
         })
         return category;
