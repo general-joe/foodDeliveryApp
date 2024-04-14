@@ -15,7 +15,7 @@ exports.saveRecipe = async (req, res, next) => {
     const data = req.body;
     data.quantity = parseInt(data.quantity);
     data.total = data.total ? parseInt(data.total) : 0;
-    console.log(data.total);
+    data.price = data.price ? parseInt(data.price) : 0;
     const item = req.file ? req.file.path : undefined;
     if (item) {
       const uploaded = await cloudinary.uploader.upload(item, {

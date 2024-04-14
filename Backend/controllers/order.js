@@ -13,15 +13,18 @@ const { addDelivery } = require("../helpers/delivery");
 
 exports.createOrder = async (req, res, next) => {
   const data = req.body;
+  const recipe = data.recipe;
   const orderData = {
-    recipe: data.recipe,
     clientId: data.clientId,
     subTotal: data.subTotal,
     deliveryFee: data.deliveryFee,
+    orderDetails: { createMany: { data: recipe } },
   };
   try {
     const order = await saveOrder(orderData);
+
     const orderId = order.id;
+
     const deliveryData = {
       orderId,
       firstname: data.firstname,

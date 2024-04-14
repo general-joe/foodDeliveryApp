@@ -1,0 +1,135 @@
+2024-04-14T19:07:45.509Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 1,
+          total: 12,
+          price: "35",
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713121665/food/item/gveloanxmtinrkqns5oq.ico",
+      +   type: String
+        }
+      })
+
+Argument `type` is missing.
+2024-04-14T19:09:19.846Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 1,
+          total: 12,
+          price: "35",
+                 ~~~~
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713121759/food/item/wjuylddzugdtc5yoi3sj.ico"
+        }
+      })
+
+Argument `price`: Invalid value provided. Expected Float, provided String.
+2024-04-14T19:10:00.025Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 1,
+          total: 12,
+          price: "35",
+                 ~~~~
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713121800/food/item/cdmpsorxgbikpovvh2fk.ico"
+        }
+      })
+
+Argument `price`: Invalid value provided. Expected Float, provided String.
+2024-04-14T19:10:33.844Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 2,
+          total: 70,
+          price: "35",
+                 ~~~~
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713121833/food/item/ig9swholeswawbu5fxvw.ico"
+        }
+      })
+
+Argument `price`: Invalid value provided. Expected Float, provided String.
+2024-04-14T19:11:23.744Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 2,
+          total: 70,
+          price: "21",
+                 ~~~~
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713121883/food/item/u1do10xbetzo7hj7zrnh.ico"
+        }
+      })
+
+Argument `price`: Invalid value provided. Expected Float, provided String.
+2024-04-14T19:13:30.899Z [31merror[39m:	
+Invalid `prisma.recipe.create()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/recipe.js:5:36
+
+  2 
+  3 const addFood = async (data) => {
+  4 
+→ 5   const food = await prisma.recipe.create({
+        data: {
+          title: "Jollof",
+          description: "Latest Delicious ",
+          quantity: 2,
+          total: 21,
+          price: "21",
+                 ~~~~
+          categoryId: "661c1d361a8f030878ac64cc",
+          item: "https://res.cloudinary.com/dgmh9hpsj/image/upload/v1713122005/food/item/o6wadaw92u5gcyhwlvmh.ico"
+        }
+      })
+
+Argument `price`: Invalid value provided. Expected Float, provided String.
+2024-04-14T19:15:05.102Z [31merror[39m:	
+Invalid `prisma.order.findUnique()` invocation in
+/Users/gigisdad/projects/chippycode/foodDeliveryApp/Backend/helpers/order.js:20:39
+
+  17 };
+  18 
+  19 const loadOrder = async (id) => {
+→ 20      const order = await prisma.order.findUnique(
+Inconsistent column data: Malformed ObjectID: provided hex string representation must be exactly 12 bytes, instead got: "undefined", length 9.
