@@ -11,7 +11,7 @@ const {
 } = require("../helpers/cartegory");
 // add cartegory
 
-exports.regiter_cartegory = async (req, res, next) => {
+exports.register_cartegory = async (req, res, next) => {
      try {
           const data = req.body;
           const cartegory = await addCartegory(data);
