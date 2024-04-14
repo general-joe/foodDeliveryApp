@@ -7,7 +7,6 @@ export const restApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
-      console.log(getState());
       // Get the token from the state or wherever it's stored
       const user = getState()?.user?.user;
       const token = user?.token;

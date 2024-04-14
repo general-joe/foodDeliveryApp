@@ -9,9 +9,8 @@ function CreateCategory() {
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("item", data.image[0].name);
+    formData.append("item", data.image[0]);
     formData.append("type", data.type);
-
     const response = await createCategory(formData);
     if (response.error) {
       toast(response.error);
@@ -35,9 +34,9 @@ function CreateCategory() {
 
   return (
     <div className="w-[60%] h-auto mx-auto my-10 p-3">
-      <h1 className="text-4xl font-bold py-5">
+      <h1 className="py-5 text-4xl font-bold">
         Create a Cartegory
-        <Link to="/category" className="pl-10 underline font-normal text-sm">
+        <Link to="/category" className="pl-10 text-sm font-normal underline">
           Go back
         </Link>
       </h1>
