@@ -1,8 +1,9 @@
 import "./ExploreMenu.css";
-import { restApi } from "../../appSetup/api";
+
+import { restApi } from "../../appSetup/hook";
 const ExploreMenu = ({ category, setCategory }) => {
   const { data, isLoading } = restApi.useGetCategoriesQuery();
-  console.log(data);
+
   return (
     <div className="explore-menu" id="explore-menu">
       <h1>Explore Our Menu</h1>
@@ -13,32 +14,26 @@ const ExploreMenu = ({ category, setCategory }) => {
       </p>
       {isLoading && <div className="loader"></div>}
       <div className="explore-menu-list">
-        {data?.cartegories.length > 0 ? (
-          data?.cartegories?.map((item, index) => {
-            return (
-              <div
-                onClick={() => {
-                  setCategory((prev) =>
-                    prev === item.menu_name ? "All" : item.menu_name
-                  );
-                }}
-                key={index}
-                className="explore-menu-list-item"
-              >
-                <img
-                  className={category === item.menu_name ? "active" : ""}
-                  src={item.menu_image}
-                  alt=""
-                />
-                <p>{item.menu_name}</p>
-              </div>
-            );
-          })
-        ) : (
-          <div>
-            <p>No categories found</p>
-          </div>
-        )}
+        {data?.cartegories?.map((item, index) => {
+          return (
+            <div
+              onClick={() => {
+                setCategory((prev) =>
+                  prev === item.menu_name ? "All" : item.menu_name
+                );
+              }}
+              key={index}
+              className="explore-menu-list-item"
+            >
+              <img
+                className={category === item.menu_name ? "active" : ""}
+                src={item.menu_image}
+                alt=""
+              />
+              <p>{item?.type}</p>
+            </div>
+          );
+        })}
       </div>
       <hr />
     </div>

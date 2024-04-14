@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./LoginPopUp.css";
 import { assets } from "../../assets/assets";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { restApi } from "../../appSetup/api";
-import { setUserInfo } from "../../appSetup/slice/user.slice";
+
+import { restApi } from "../../appSetup/hook";
+
+import { setUserInfo } from "../../appSetup/hook/user.slice";
 
 const LoginPopUp = ({ setShowLogin }) => {
   const dispatch = useDispatch();
+
+  const [createClient, { isLoading }] = restApi.useCreateClientMutation();
+  const [login, { isLoading: loginLoading }] = restApi.useLoginUserMutation();
   const [currState, setCurrState] = useState("Login");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [createClient, { isLoading }] = restApi.useCreateClientMutation();
-  const [login, { isLoading: loginLoading }] = restApi.useLoginUserMutation();
 
   const onSubmit = async (data) => {
     const userData =
@@ -34,17 +37,18 @@ const LoginPopUp = ({ setShowLogin }) => {
       currState === "Login"
         ? await login(userData)
         : await createClient(userData);
+
     if (response.error) {
-      toast.error(response.error.message);
+      toast.error(error.data.message);
       return;
     }
     if (currState === "Login") {
-      const { ...user } = response.data;
+      const { message, ...user } = response.data;
       dispatch(setUserInfo(user));
     }
-    console.log(response);
-    toast.success("Successful!");
-    setCurrState("Login");
+    console.log(response, "Xxxxxxx");
+    toast.success("Successful");
+    setShowLogin(false);
   };
 
   return (
