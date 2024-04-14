@@ -11,6 +11,7 @@ function Clients() {
   const handleDelete = async (clientId) => {
     try {
       await deleteClient(clientId);
+      toast.error("Client deleted successfully");
     } catch (error) {
       console.error("Failed to delete category:", error);
       toast.error("Failed to delete category");

@@ -1,9 +1,8 @@
 import React from "react";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Category() {
@@ -14,6 +13,7 @@ function Category() {
   const handleDelete = async (categoryId) => {
     try {
       await deleteCategory(categoryId);
+      toast.error("Category deleted successfully");
     } catch (error) {
       console.error("Failed to delete category:", error);
       toast.error("Failed to delete category");

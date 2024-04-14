@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
+import { toast } from "react-toastify";
 
 function Recipe() {
   const { data, isLoading } = restApi.useGetRecipiesQuery();
@@ -11,6 +12,7 @@ function Recipe() {
   const handleDelete = async (recipeId) => {
     try {
       await deleteRecipe(recipeId);
+      toast.error("Recipe deleted successfully");
     } catch (error) {
       console.error("Failed to delete recipe:", error);
     }
