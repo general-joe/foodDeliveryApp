@@ -103,7 +103,7 @@ const Cart = () => {
   );
 };
 
-const getTotalCartAmount = (products) => {
+export const getTotalCartAmount = (products) => {
   return products?.reduce(
     (accumulator, product) => accumulator + Number(product.price),
     0
