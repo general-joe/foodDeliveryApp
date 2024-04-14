@@ -58,6 +58,7 @@ model order {
   clientId    String?   @db.ObjectId
 }
 
+
 model delivery {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   firstname   String
