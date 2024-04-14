@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { RiAccountCircleFill, RiMenuLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { MdAccountCircle } from "react-icons/md";
 
-import { logoutUser } from "../../appSetup/slice/user.slice";
-import classNames from "classnames";
-import Avatar from "../avatar";
-import { MdFoodBank } from "react-icons/md";
-import { navbarData } from "./navbar-data";
+import { useDispatch } from "react-redux";
+
+import { logoutUser } from "../../appSetup/hook/user.slice";
 
 const Navbar = ({ setShowLogin }) => {
   const dispatch = useDispatch();
@@ -73,36 +71,30 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
-        <div className="navbar-search-icon relative p-3">
+        <div className="relative p-3 navbar-search-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <span className="absolute right-0 top-0 bg-orange-700 text-white rounded-full w-1/2  text-center">
-            {cartItems?.length}
-          </span>
+          <span>{cartItems?.length}</span>
         </div>
         {user?.id ? (
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1">
-              <RiAccountCircleFill className="w-10 h-10" />
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <p>{user?.username}</p>
-              </li>
-              <li>
-                <p>{user?.email}</p>
-              </li>
-              <li>
-                <p>
-                  <button className="" onClick={() => dispatch(logoutUser())}>
-                    Logout
-                  </button>
-                </p>
-              </li>
+          <div className="relative flex">
+            <span className="m-1 btn">
+              <MdAccountCircle className="w-8 h-8" />
+            </span>
+            <ul className="p-2 absolute shadow-lg z-[1] bg-base-100 rounded-box w-52">
+              <p>Username: {user?.username}</p>
+              <p>Email: {user?.email}</p>
+              <p>
+                <button
+                  className=""
+                  onClick={() => {
+                    dispatch(logoutUser());
+                  }}
+                >
+                  Logout
+                </button>
+              </p>
             </ul>
           </div>
         ) : (
@@ -131,11 +123,11 @@ const AdminNavbar = () => {
         {/* Header */}
         <Link to="/">
           <MdFoodBank className="w-full h-full " />
-          <p className="font-medium text-xl py-2">Admin Portal</p>
+          <p className="py-2 text-xl font-medium">Admin Portal</p>
         </Link>
       </div>
       {/* Links */}
-      <div className="flex-1 flex-col items-start justify-start py-1 mt-10 w-full mx-auto">
+      <div className="flex-col items-start justify-start flex-1 w-full py-1 mx-auto mt-10">
         {navbarData.map((item) => (
           <Link
             key={item.id}
@@ -187,7 +179,7 @@ const MobileNavbar = () => {
               key={item.id}
               className="py-2 text-[17px] max-[399px]:text-sm max-[399px]:p-0"
             >
-              <Link to={item.url} className=" text-black">
+              <Link to={item.url} className="text-black ">
                 {item.title}
               </Link>
             </li>

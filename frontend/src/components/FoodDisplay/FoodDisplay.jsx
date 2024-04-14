@@ -1,6 +1,8 @@
+import React from "react";
 import "./FoodDisplay.css";
+
 import FoodItem from "../FoodItem/FoodItem";
-import { restApi } from "../../appSetup/api";
+import { restApi } from "../../appSetup/hook";
 
 const FoodDisplay = ({ category }) => {
   const { data, isLoading } = restApi.useGetRecipiesQuery();

@@ -20,10 +20,9 @@ model client {
   password String
   role     String?
   order    order[]
-  
 }
 
-model cartegory {
+model category {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   item      String?
   type      String
@@ -42,7 +41,7 @@ model recipe {
   price       String     @default("0.00")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  cartegory   cartegory? @relation(fields: [cartegoryId], references: [id])
+  cartegory   category? @relation(fields: [cartegoryId], references: [id])
   cartegoryId String     @db.ObjectId
   order       order?     @relation(fields: [orderId], references: [id])
   orderId     String?    @db.ObjectId

@@ -3,7 +3,6 @@ const httpstatus = require("../utils/httpstatus");
 const logger = require("../utils/loggerUtil");
 const bcrypt = require("../utils/bcrypt");
 const { signToken } = require("../utils/tokenUtil");
-const cloudinary = require("../utils/cloudinary");
 
 const {
   signUp,
@@ -82,12 +81,13 @@ exports.removeClient = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
     const client = await login(email);
     if (!client) {
       throw new Error("email not found");
     } else {
       const checkPassword = await bcrypt.compare(password, client.password);
+      
       if (!checkPassword) {
         throw new Error("Invalid credentials");
       } else {
@@ -99,6 +99,7 @@ exports.login = async (req, res, next) => {
           email: client.email,
           token,
           id: client.id,
+          role: client.role,
         });
       }
     }

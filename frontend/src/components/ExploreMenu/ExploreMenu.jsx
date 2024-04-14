@@ -1,5 +1,6 @@
 import "./ExploreMenu.css";
-import { restApi } from "../../appSetup/api";
+
+import { restApi } from "../../appSetup/hook";
 const ExploreMenu = ({ category, setCategory }) => {
   const { data, isLoading } = restApi.useGetCategoriesQuery();
   return (
