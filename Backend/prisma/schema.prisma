@@ -35,6 +35,7 @@ model recipe {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   item        String?
   title       String
+  type String
   description String
   quantity    Int        @default(1)
   total       Int        @default(0)
