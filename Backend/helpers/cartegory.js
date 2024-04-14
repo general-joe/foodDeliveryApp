@@ -10,10 +10,7 @@ const addCategory = async(req, data) =>{
               data.item = uploaded.secure_url;
           }
       }
-      const category = await prisma.category.create({
-        data
-      })
-      return category;
+      
 }
 
 const getCartegories = async () => {
