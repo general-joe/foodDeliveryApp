@@ -55,11 +55,11 @@ function Orders() {
           <thead>
             <tr>
               <th className="text-lg">Client Name</th>
-              <th className="text-lg">View Orders</th>
               <th className="text-lg">Delivery Fee</th>
               <th className="text-lg"> Amount</th>
               <th className="text-lg"> Total</th>
               <th className="text-lg">Status</th>
+              <th className="text-lg">View Orders</th>
               <th className="text-lg">Cancel</th>
             </tr>
           </thead>
@@ -71,12 +71,6 @@ function Orders() {
                 {/* Client Name */}
                 <td>
                   <p>{order?.client?.username}</p>
-                </td>
-                {/* View Orders */}
-                <td>
-                  <Link to={`/admin-dashboard/order-details/${order.id}`}>
-                    <IoFastFood className="w-8 h-8" />
-                  </Link>
                 </td>
                 {/* Quantity */}
                 <td>
@@ -94,7 +88,12 @@ function Orders() {
                 <td>
                   <p>{order.status}</p>
                 </td>
-
+                {/* View Orders */}
+                <td>
+                  <Link to={`/admin-dashboard/order-details/${order.id}`}>
+                    <IoFastFood className="w-8 h-8" />
+                  </Link>
+                </td>
                 <th>
                   <button
                     className="btn btn-ghost btn-xs"

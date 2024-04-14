@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { restApi } from "../../../../appSetup/hook";
 import Table from "../../../../components/table";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CreatedOrder() {
   const navigate = useNavigate();
   const { data, isLoading } = restApi.useGetOrdersQuery();
+  const [updateOrderStatus, { isLoading: updateLoading }] =
+    restApi.useUpdateOrderStatusMutation();
   const createdOrders = data.orders?.filter(
     (order) => order.status === "CREATED" || []
   );
@@ -22,10 +25,19 @@ function CreatedOrder() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const status = "PROCESSED";
-    // Navigate to /admin-dashboard/processed-orders
-    console.log(selectedOrder);
+    const updateStatus = {
+      status,
+      ids: selectedOrder,
+    };
+    const response = await updateOrderStatus(updateStatus);
+    if (!response.error) {
+      toast.success("Order updated successfully");
+      navigate("/admin-dashboard/processed-orders");
+    } else {
+      toast.error("Status unable to update");
+    }
   };
 
   return (
@@ -35,6 +47,7 @@ function CreatedOrder() {
         {/* React-Select */}
         <div className="">
           <button className="btn btn-ghost " onClick={() => handleSubmit()}>
+            {updateLoading && <div className="loader"></div>}
             Process
           </button>
         </div>

@@ -24,6 +24,12 @@ function ProcessedOrders() {
 
   const handleSubmit = () => {
     const status = "DELIVERED";
+    const updateStatus = {
+      status,
+      ids: selectedOrder,
+    };
+    // Navigate to /admin-dashboard/delivered-orders
+
     console.log(selectedOrder);
   };
   return (
