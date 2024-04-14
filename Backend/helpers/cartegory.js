@@ -2,10 +2,10 @@ const prisma = require("../utils/prismaUtil");
 const cloudinary = require("../utils/cloudinary");
 
 const addCartegory = async (data) =>{
-     const image = req.file ? req.file.path : undefined;
-        if (image) {
-            const uploaded = await cloudinary.uploader.upload(image, {
-                folder: 'familytree/' + type + '/images'
+     const item = req.file ? req.file.path : undefined;
+        if (item) {
+            const uploaded = await cloudinary.uploader.upload(item, {
+                folder: 'familytree/' + data.type + '/images'
             });
             if (uploaded) {
                 data.item = uploaded.secure_url;
@@ -14,6 +14,7 @@ const addCartegory = async (data) =>{
         const category = await prisma.category.create({
           data
         })
+        return category;
        
 };
 
