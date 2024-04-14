@@ -26,6 +26,15 @@ const loadOrder = async (id) => {
     where: {
       id,
     },
+    include: {
+      orderDetails: {
+        include: {
+          recipe: true,
+        },
+      },
+      delivery: true,
+      client: true,
+    },
   });
   return order;
 };
