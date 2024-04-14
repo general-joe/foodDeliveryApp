@@ -80,6 +80,42 @@ const rootRoutes = createBrowserRouter(
           }}
         />
         <Route
+          path="order-details/:id"
+          lazy={async () => {
+            const { default: Orders } = await import(
+              "./admin/orders/orderDetails"
+            );
+            return { Component: Orders };
+          }}
+        />
+        <Route
+          path="created-orders"
+          lazy={async () => {
+            const { default: Orders } = await import(
+              "./admin/orders/orderByStatus/created"
+            );
+            return { Component: Orders };
+          }}
+        />
+        <Route
+          path="processed-orders"
+          lazy={async () => {
+            const { default: Orders } = await import(
+              "./admin/orders/orderByStatus/processed"
+            );
+            return { Component: Orders };
+          }}
+        />
+        <Route
+          path="delivered-orders"
+          lazy={async () => {
+            const { default: Orders } = await import(
+              "./admin/orders/orderByStatus/delivered"
+            );
+            return { Component: Orders };
+          }}
+        />
+        <Route
           path="recipe"
           lazy={async () => {
             const { default: Recipe } = await import("./admin/recipe");

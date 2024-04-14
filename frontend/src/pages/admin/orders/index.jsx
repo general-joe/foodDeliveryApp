@@ -7,7 +7,6 @@ import { restApi } from "../../../appSetup/hook";
 function Orders() {
   const { data, isLoading } = restApi.useGetOrdersQuery();
   console.log(data, "data");
-  const { data, isLoading } = restApi.useGetOrdersQuery();
 
   const [deleteOrder] = restApi.useDeleteOrderMutation();
   const handleDelete = async (orderId) => {
@@ -20,7 +19,34 @@ function Orders() {
   return (
     <div className="">
       <div className="flex items-center justify-between px-4 py-5">
-        <h1 className="text-2xl font-bold ">Orders</h1>
+        <h1 className="text-3xl font-bold">All Orders</h1>
+        <ul className="menu bg-base-200 w-56 rounded-box">
+          <li>
+            <details open>
+              <summary>Order Status</summary>
+              <ul>
+                <li>
+                  <Link to="/admin-dashboard/created-orders">
+                    Created
+                    <span className="badge rounded-full bg-green-500"></span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin-dashboard/processed-orders">
+                    Processed
+                    <span className="badge rounded-full bg-yellow-500"></span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin-dashboard/delivered-orders">
+                    Delivered
+                    <span className="badge rounded-full bg-orange-500"></span>
+                  </Link>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
       </div>
       {/* Table */}
       <div className="overflow-x-auto">
@@ -28,12 +54,12 @@ function Orders() {
           {/* Table Head */}
           <thead>
             <tr>
+              <th className="text-lg">Client Name</th>
               <th className="text-lg">View Orders</th>
               <th className="text-lg">Delivery Fee</th>
               <th className="text-lg"> Amount</th>
               <th className="text-lg"> Total</th>
               <th className="text-lg">Status</th>
-              <th className="text-lg">Edit</th>
               <th className="text-lg">Cancel</th>
             </tr>
           </thead>
@@ -42,10 +68,13 @@ function Orders() {
             {isLoading && <div className="loader"></div>}
             {data?.orders?.map((order) => (
               <tr key={order.id}>
+                {/* Client Name */}
+                <td>
+                  <p>{order?.client?.username}</p>
+                </td>
                 {/* View Orders */}
                 <td>
-                  {/*Replace with /order-recipe/${id} */}
-                  <Link to={`/order-recipe/${order.id}`}>
+                  <Link to={`/admin-dashboard/order-details/${order.id}`}>
                     <IoFastFood className="w-8 h-8" />
                   </Link>
                 </td>
@@ -65,11 +94,7 @@ function Orders() {
                 <td>
                   <p>{order.status}</p>
                 </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">
-                    <MdModeEditOutline />
-                  </button>
-                </th>
+
                 <th>
                   <button
                     className="btn btn-ghost btn-xs"
