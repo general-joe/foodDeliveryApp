@@ -10,7 +10,7 @@ const PlaceOrder = () => {
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
-  const { data } = restApi.useGetRecipiesQuery();
+
   const {
     register,
     handleSubmit,
@@ -22,16 +22,15 @@ const PlaceOrder = () => {
     const orderInfo = {
       ...payload,
       clientId: user.id,
-      recipe: cartItems,
-      deliveryFee:
-        getTotalCartAmount(
-          data?.recipes?.filter((recipe) => cartItems.includes(recipe.id))
-        ) === 0
-          ? 0
-          : 2,
-      subTotal: getTotalCartAmount(
-        data?.recipes?.filter((recipe) => cartItems.includes(recipe.id))
-      ),
+      recipe: cartItems?.map((item) => {
+        return {
+          recipeId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        };
+      }),
+      deliveryFee: getTotalCartAmount(cartItems) === 0 ? 0 : 2,
+      subTotal: getTotalCartAmount(cartItems),
     };
     console.log(orderInfo);
     const response = await createOrder(orderInfo);
@@ -132,9 +131,7 @@ const PlaceOrder = () => {
             <p>Subtotal</p>
             <p>
               GH
-              {getTotalCartAmount(
-                data?.recipes?.filter((recipe) => cartItems.includes(recipe.id))
-              )}
+              {getTotalCartAmount(cartItems)}
             </p>
           </div>
           <hr />
@@ -142,11 +139,7 @@ const PlaceOrder = () => {
             <p>Delivery Fee</p>
             <p>
               GH
-              {getTotalCartAmount(
-                data?.recipes?.filter((recipe) => cartItems.includes(recipe.id))
-              ) === 0
-                ? 0
-                : 2}
+              {getTotalCartAmount(cartItems) === 0 ? 0 : 2}
             </p>
           </div>
           <hr />
@@ -154,15 +147,9 @@ const PlaceOrder = () => {
             <b>Total</b>
             <b>
               GH
-              {getTotalCartAmount(
-                data?.recipes?.filter((recipe) => cartItems.includes(recipe.id))
-              ) === 0
+              {getTotalCartAmount(cartItems) === 0
                 ? 0
-                : getTotalCartAmount(
-                    data?.recipes?.filter((recipe) =>
-                      cartItems.includes(recipe.id)
-                    )
-                  ) + 2}
+                : getTotalCartAmount(cartItems) + 2}
             </b>
           </div>
           <button type="submit">

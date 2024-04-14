@@ -22,7 +22,7 @@ function CreateRecipe() {
     formData.append("quantity", data.quantity);
     formData.append("total", data.total);
     formData.append("price", data.price);
-    formData.append("cartegoryId", data.category);
+    formData.append("categoryId", data.category);
     const response = await createRecipe(formData);
     if (response.error) {
       toast(response.error);
@@ -56,7 +56,7 @@ function CreateRecipe() {
     price: {
       label: "Recipe price",
       placeholder: "Enter price",
-      type: "text",
+      type: "number",
     },
     item: {
       label: "Recipe Image",
