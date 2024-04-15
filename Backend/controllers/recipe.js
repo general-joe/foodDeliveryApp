@@ -19,10 +19,10 @@ exports.saveRecipe = async (req, res, next) => {
     const item = req.file ? req.file.path : undefined;
     if (item) {
       const uploaded = await cloudinary.uploader.upload(item, {
-        folder: "food/item",
+        folder: "food/images",
       });
       if (uploaded) {
-        data.item = uploaded.secure_url;
+        data.image = uploaded.secure_url;
       }
     }
     const recipe = await addFood(data);
