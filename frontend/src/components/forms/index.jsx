@@ -2,12 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-export function Form({ data, onSubmit, title, loading, login }) {
+export function Form({ data, onSubmit, title, loading, login, initialValues }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: initialValues });
 
   const renderFormControl = (key, field) => {
     switch (field.type) {

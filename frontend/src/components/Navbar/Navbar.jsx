@@ -30,7 +30,7 @@ const Navbar = ({ setShowLogin }) => {
       <Link to="/">
         <img src={assets.logo} alt="" className="logo" />
       </Link>
-      <ul className="navbar-menu max-[999px]:hidden">
+      <ul className="navbar-menu max-[999px]:hidden max-xl:hidden">
         <Link
           to="/"
           onClick={() => setMenu("home")}
@@ -118,7 +118,7 @@ const Navbar = ({ setShowLogin }) => {
             Sign In
           </button>
         )}
-        <MobileViewNavbar setShowLogin={setShowLogin} />
+        <MobileViewNavbar setShowLogin={setShowLogin} setMenu={setMenu} />
       </div>
     </div>
   );
@@ -126,7 +126,7 @@ const Navbar = ({ setShowLogin }) => {
 
 export default Navbar;
 
-const MobileViewNavbar = ({ setShowLogin }) => {
+const MobileViewNavbar = ({ setShowLogin, setMenu }) => {
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state) => state.cart);
@@ -140,7 +140,7 @@ const MobileViewNavbar = ({ setShowLogin }) => {
           <RxHamburgerMenu fontSize={25} tabIndex={0} className="" />
         </div>
         <ul
-          className="flex flex-col menu dropdown-content w-52 bg-base-200 z-[1] mt-5 rounded-box"
+          className="flex flex-col menu dropdown-content w-52 bg-base-200 z-[1] mt-5 rounded-box "
           tabIndex={0}
         >
           <li className="">
@@ -159,6 +159,19 @@ const MobileViewNavbar = ({ setShowLogin }) => {
             <Link to="/about-us">About Us</Link>
           </li>
           <li>
+            {user?.role === "Admin" ? (
+              <a
+                href="/admin-dashboard"
+                onClick={() => setMenu("admin-dashboard")}
+                className=""
+              >
+                Dashboard
+              </a>
+            ) : (
+              ""
+            )}
+          </li>
+          <li>
             <div className="relative p-3 max-[999px]:hidden">
               <Link to="/cart">
                 <img src={assets.basket_icon} alt="" />
@@ -170,26 +183,18 @@ const MobileViewNavbar = ({ setShowLogin }) => {
           </li>
           <li>
             {user?.id ? (
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="m-1 btn">
-                  <MdAccountCircle className="w-8 h-8" />
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <p>Email: {user?.email}</p>
-                  <p>
-                    <button
-                      className=""
-                      onClick={() => {
-                        dispatch(logoutUser());
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </p>
-                </ul>
+              <div className="flex flex-col items-start">
+                <p>Email: {user?.email}</p>
+                <p>
+                  <button
+                    className=""
+                    onClick={() => {
+                      dispatch(logoutUser());
+                    }}
+                  >
+                    Logout
+                  </button>
+                </p>
               </div>
             ) : (
               <button

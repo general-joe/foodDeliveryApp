@@ -12,7 +12,7 @@ const Footer = () => {
           <img
             src={assets.logo}
             alt=""
-            className=" h-20 w-full max-lg:w-full max-md:w-full max-sm:w-full"
+            className=" h-20 w-full max-lg:w-full max-md:w-full max-sm:w-full max-lg:h-auto max-md:h-auto max-sm:h-auto"
           />
           <p className="text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
