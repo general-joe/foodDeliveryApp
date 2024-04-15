@@ -9,12 +9,7 @@ function CreateCategory() {
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
 
   const onSubmit = async (data) => {
-    const imageFile = data.image[0];
-    const formData = new FormData();
-    formData.append("image", imageFile);
-    formData.append("type", data.type);
-    console.log(data);
-    const response = await createCategory(formData);
+    const response = await createCategory(data);
     if (!response.error) {
       toast.success("Successful!");
       navigate("/admin-dashboard/category");
