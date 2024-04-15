@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ import { RiMenuLine } from "react-icons/ri";
 import classNames from "classnames";
 import { navbarData } from "./navbar-data";
 import Avatar from "../avatar";
+import { RxHamburgerMenu } from "react-icons/rx";
 export const getTotalQty = (products) => {
   return products?.reduce(
     (accumulator, product) => accumulator + Number(product.quantity),
@@ -112,6 +113,30 @@ const Navbar = ({ setShowLogin }) => {
         ) : (
           <button onClick={() => setShowLogin(true)}>Sign In</button>
         )}
+      </div>
+      {/* Mobile View */}
+      <div className="min-[999px]:hidden ">
+        <div className="dropdown dropdown-end">
+          {/* Icon */}
+          <RxHamburgerMenu fontSize={25} tabIndex={0} className="" />
+          <ul className="flex flex-col menuu" tabIndex={0}>
+            <li className="">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="">
+              <Link to="#explore-menu">Menu</Link>
+            </li>
+            <li className="">
+              <Link to="#app-download">Mobile App</Link>
+            </li>
+            <li className="">
+              <Link to="#footer">Contact Us</Link>
+            </li>
+            <li className="">
+              <Link to="/about-us">About Us</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
