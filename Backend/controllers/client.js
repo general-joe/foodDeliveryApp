@@ -80,31 +80,31 @@ exports.removeClient = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  // try {
-  const { email, password } = req.body;
-  const client = await login(email);
-  if (!client) {
-    throw new Error("email not found");
-  } else {
-    const checkPassword = await bcrypt.compare(password, client.password);
-
-    if (!checkPassword) {
-      throw new Error("Invalid credentials");
+  try {
+    const { email, password } = req.body;
+    const client = await login(email);
+    if (!client) {
+      throw new Error("email not found");
     } else {
-      delete client.password;
-      const token = signToken(client.id);
-      res.status(httpstatus.OK).json({
-        message: "User succesfully logged in !",
-        username: client.username,
-        email: client.email,
-        token,
-        id: client.id,
-        role: client.role,
-      });
+      const checkPassword = await bcrypt.compare(password, client.password);
+
+      if (!checkPassword) {
+        throw new Error("Invalid credentials");
+      } else {
+        delete client.password;
+        const token = signToken(client.id);
+        res.status(httpstatus.OK).json({
+          message: "User succesfully logged in !",
+          username: client.username,
+          email: client.email,
+          token,
+          id: client.id,
+          role: client.role,
+        });
+      }
     }
+  } catch (error) {
+    logger.error(error);
+    next(new CustomError(500, error));
   }
-  // } catch (error) {
-  //   logger.error(error);
-  //   next(new CustomError(500, error));
-  // }
 };
