@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./LoginPopUp.css";
-import { assets } from "../../assets/assets";
-import { useForm, useWatch } from "react-hook-form";
+
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import { restApi } from "../../appSetup/hook";
 import { setUserInfo } from "../../appSetup/hook/user.slice";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { LoginValidator } from "./validate";
 
 const SignIn = ({ setShowLogin, setCurrState }) => {
   const dispatch = useDispatch();
@@ -15,31 +16,21 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
   const [login, { isLoading }] = restApi.useLoginUserMutation();
 
   const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
-    control,
+
     handleSubmit,
     formState: { errors },
   } = useForm({
+    resolver: LoginValidator,
+    mode: "all",
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  console.log(errors, "checking errors");
-
-  const email = useWatch({
-    name: "email",
-    control,
-  });
-  const password = useWatch({
-    name: "password",
-    control,
-  });
-
-  console.log(email, "checking email value");
-  console.log(password, "checking password value");
   const onSubmit = async (data) => {
     const userData = {
       email: data.email,
@@ -54,7 +45,6 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
     }
     const { message, ...user } = response.data;
     dispatch(setUserInfo(user));
-    console.log(response, "Xxxxxxx");
     toast.success("Successful");
     setShowLogin(false);
   };
@@ -71,7 +61,7 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
           placeholder="Your email"
           className="p-2 border border-gray-300 rounded-md"
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         <div className="relative">
           <input
             type={!showPassword ? "password" : "text"}
@@ -101,7 +91,9 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
               />
             )}
           </span>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
         </div>
 
         <button
