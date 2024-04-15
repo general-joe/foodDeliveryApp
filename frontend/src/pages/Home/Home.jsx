@@ -9,7 +9,7 @@ import AboutModal from "../../components/About-Us/aboutModal";
 const Home = () => {
   const [category, setCategory] = useState("All");
   const [showAbout, setShowAbout] = useState(true);
-
+  console.log(category);
   return (
     <div>
       {showAbout ? <AboutModal setShowAbout={setShowAbout} /> : <></>}
