@@ -16,12 +16,9 @@ function CreateRecipe() {
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    const totalPrice = parseFloat(data.price) + parseInt(data.quantity);
     formData.append("image", data.image[0]);
     formData.append("title", data.title);
     formData.append("description", data.description);
-    formData.append("quantity", data.quantity);
-    formData.append("total", totalPrice);
     formData.append("price", data.price);
     formData.append("category", data.category);
     const response = await createRecipe(formData);
@@ -42,11 +39,6 @@ function CreateRecipe() {
       label: "Description",
       placeholder: "Enter recipe description",
       type: "text",
-    },
-    quantity: {
-      label: "Quantity",
-      placeholder: "Enter quantity",
-      type: "number",
     },
     price: {
       label: "Recipe price",
