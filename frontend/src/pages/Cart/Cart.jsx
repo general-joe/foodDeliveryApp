@@ -2,11 +2,13 @@ import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateCartQty } from "../../appSetup/hook/cart.slice";
+import { toast } from "react-toastify";
+
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
-
+  const user = useSelector((state) => state.user.user);
   return (
     <div className="cart">
       <div className="cart-items">
@@ -90,7 +92,16 @@ const Cart = () => {
                 : getTotalCartAmount(cartItems) + 2}
             </b>
           </div>
-          <button onClick={() => navigate("/order")}>
+          <button
+            onClick={() => {
+              if (user.id) {
+                navigate("/order");
+              } else {
+                toast.error("Please login to proceed");
+                return;
+              }
+            }}
+          >
             PROCEED TO CHECKOUT
           </button>
         </div>
