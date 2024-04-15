@@ -22,6 +22,8 @@ const LoginPopUp = ({ setShowLogin }) => {
     formState: { errors },
   } = useForm();
 
+  console.log(errors, "checking errors");
+
   const onSubmit = async (data) => {
     const userData =
       currState === "Login"
@@ -55,7 +57,7 @@ const LoginPopUp = ({ setShowLogin }) => {
   return (
     <div className="fixed inset-0 z-[1] bg-black bg-opacity-50 flex items-center justify-center">
       <div className="w-full max-w-[330px] p-6 bg-white text-gray-800 rounded-lg flex flex-col gap-6">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <h2 className="text-tomato">{currState}</h2>
           <img
             onClick={() => setShowLogin(false)}
@@ -73,7 +75,7 @@ const LoginPopUp = ({ setShowLogin }) => {
                 maxLength: 20,
               })}
               placeholder="Your name"
-              className="border border-gray-300 rounded-md p-2"
+              className="p-2 border border-gray-300 rounded-md"
             />
           )}
           {errors.username && <p>{errors.username.message}</p>}
@@ -84,7 +86,7 @@ const LoginPopUp = ({ setShowLogin }) => {
               maxLength: 20,
             })}
             placeholder="Your email"
-            className="border border-gray-300 rounded-md p-2"
+            className="p-2 border border-gray-300 rounded-md"
           />
           {errors.email && <p>{errors.email.message}</p>}
           <div className="relative">
@@ -99,7 +101,7 @@ const LoginPopUp = ({ setShowLogin }) => {
                 },
               })}
               placeholder="Password"
-              className="border border-gray-300 rounded-md p-2 overflow-hidden w-full"
+              className="w-full p-2 overflow-hidden border border-gray-300 rounded-md"
             />
             <span className="absolute top-[2px] right-0  p-2">
               {showPassword ? (
@@ -118,18 +120,6 @@ const LoginPopUp = ({ setShowLogin }) => {
             </span>
             {errors.password && <p>{errors.password.message}</p>}
           </div>
-          <button
-            type="submit"
-            className="bg-tomato text-white rounded-md p-2 text-center"
-          >
-            {isLoading || loginLoading ? (
-              <div className="loader"></div>
-            ) : currState === "Sign Up" ? (
-              "Create Account"
-            ) : (
-              "Login"
-            )}
-          </button>
           {currState === "Sign Up" ? (
             <div className="flex items-start w-full gap-2 ">
               <input type="checkbox" required className="mt-1" />
@@ -140,12 +130,25 @@ const LoginPopUp = ({ setShowLogin }) => {
           ) : (
             <></>
           )}
+          <button
+            type="submit"
+            className="p-2 text-center text-white rounded-md bg-tomato"
+          >
+            {isLoading || loginLoading ? (
+              <div className="loader"></div>
+            ) : currState === "Sign Up" ? (
+              "Create Account"
+            ) : (
+              "Login"
+            )}
+          </button>
+
           {currState === "Login" ? (
             <p>
               Create a new account?{" "}
               <span
                 onClick={() => setCurrState("Sign Up")}
-                className="text-tomato font-semibold cursor-pointer"
+                className="font-semibold cursor-pointer text-tomato"
               >
                 Click here
               </span>
@@ -155,7 +158,7 @@ const LoginPopUp = ({ setShowLogin }) => {
               Already have an account?{" "}
               <span
                 onClick={() => setCurrState("Login")}
-                className="text-tomato font-semibold cursor-pointer"
+                className="font-semibold cursor-pointer text-tomato"
               >
                 Login here
               </span>
