@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./LoginPopUp.css";
-import { assets } from "../../assets/assets";
-import { useForm, useWatch } from "react-hook-form";
-import { useDispatch } from "react-redux";
+
+import { useForm } from "react-hook-form";
+
 import { toast } from "react-toastify";
 
 import { restApi } from "../../appSetup/hook";
-import { setUserInfo } from "../../appSetup/hook/user.slice";
+
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { SignupValidator } from "./validate";
 
 function SignUp({ setShowLogin, setCurrState }) {
   const [createClient, { isLoading }] = restApi.useCreateClientMutation();
@@ -15,10 +16,11 @@ function SignUp({ setShowLogin, setCurrState }) {
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
+    resolver: SignupValidator,
+    mode: "all",
     defaultValues: {
       email: "",
       username: "",
@@ -26,23 +28,6 @@ function SignUp({ setShowLogin, setCurrState }) {
     },
   });
 
-  console.log(errors, "checking errors");
-  const email = useWatch({
-    name: "email",
-    control,
-  });
-  const username = useWatch({
-    name: "username",
-    control,
-  });
-  const password = useWatch({
-    name: "password",
-    control,
-  });
-
-  console.log(email, "checking email value");
-  console.log(username, "checking username value");
-  console.log(password, "checking password value");
   const onSubmit = async (data) => {
     const userData = {
       username: data.username,
@@ -50,12 +35,10 @@ function SignUp({ setShowLogin, setCurrState }) {
       password: data.password,
     };
     const response = await createClient(userData);
-
     if (response.error) {
       toast.error(response.error.data.message);
       return;
     }
-    console.log(response, "Xxxxxxx");
     toast.success("Successful");
     setShowLogin(false);
   };
@@ -71,7 +54,9 @@ function SignUp({ setShowLogin, setCurrState }) {
           placeholder="Your name"
           className="p-2 border border-gray-300 rounded-md"
         />
-        {errors.username && <p>{errors.username.message}</p>}
+        {errors.username && (
+          <p className="text-red-500">{errors.username.message}</p>
+        )}
 
         <input
           type="email"
@@ -82,7 +67,7 @@ function SignUp({ setShowLogin, setCurrState }) {
           placeholder="Your email"
           className="p-2 border border-gray-300 rounded-md"
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         <div className="relative">
           <input
             type={!showPassword ? "password" : "text"}
@@ -112,7 +97,9 @@ function SignUp({ setShowLogin, setCurrState }) {
               />
             )}
           </span>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
         </div>
 
         <div className="flex items-start w-full gap-2 ">
