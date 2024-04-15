@@ -20,8 +20,8 @@ const ExploreMenu = ({ category, setCategory }) => {
             return (
               <div
                 onClick={() => {
-                  setCategory((prev) =>
-                    prev === item.type ? "All" : item.type
+                  setCategory((prevCategory) =>
+                    prevCategory === item.id ? null : item.id
                   );
                 }}
                 key={index}
@@ -29,9 +29,7 @@ const ExploreMenu = ({ category, setCategory }) => {
               >
                 <LazyLoadImage
                   className={`w-16 h-auto min-w-20 rounded-full transition-all duration-200 ${
-                    category === item.type
-                      ? "border-4 border-[#ff6347] p-1"
-                      : ""
+                    category === item.id ? "border-4 border-[#ff6347] p-1" : ""
                   }`}
                   src={item.image}
                   alt=""

@@ -38,7 +38,7 @@ function Recipe() {
               <th className="text-lg">Image</th>
               <th className="text-lg">Title</th>
               <th className="text-lg">Description</th>
-              <th className="text-lg">Price</th>
+              <th className="text-lg">Price(Ghc)</th>
               <th className="text-lg">Edit</th>
               <th className="text-lg">Delete</th>
             </tr>
