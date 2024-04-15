@@ -53,7 +53,7 @@ function Category() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle bg-slate-200 w-12 h-12">
-                          <img src={category.item} alt="category-icon" />
+                          <img src={category.image} alt="category-icon" />
                         </div>
                       </div>
                     </div>

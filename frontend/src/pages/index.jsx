@@ -73,6 +73,15 @@ const rootRoutes = createBrowserRouter(
           }}
         />
         <Route
+          path="clients/edit-client/:id"
+          lazy={async () => {
+            const { default: Clients } = await import(
+              "./admin/clients/editClient"
+            );
+            return { Component: Clients };
+          }}
+        />
+        <Route
           path="orders"
           lazy={async () => {
             const { default: Orders } = await import("./admin/orders");

@@ -2,11 +2,12 @@ import React from "react";
 import { restApi } from "../../../appSetup/hook";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Clients() {
   const { data, isLoading } = restApi.useGetClientsQuery();
-  console.log(data, "data");
   const [deleteClient] = restApi.useDeleteClientMutation();
+  const navigate = useNavigate();
 
   const handleDelete = async (clientId) => {
     try {
@@ -53,7 +54,14 @@ function Clients() {
                   <p>{client.role}</p>
                 </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => {
+                      navigate(
+                        `/admin-dashboard/clients/edit-client/${client.id}`
+                      );
+                    }}
+                  >
                     <MdModeEditOutline />
                   </button>
                 </th>

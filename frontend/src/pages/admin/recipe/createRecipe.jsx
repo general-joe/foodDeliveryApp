@@ -16,20 +16,20 @@ function CreateRecipe() {
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("item", data.item[0]);
+    const totalPrice = parseFloat(data.price) + parseInt(data.quantity);
+    formData.append("image", data.image[0]);
     formData.append("title", data.title);
     formData.append("description", data.description);
     formData.append("quantity", data.quantity);
-    formData.append("total", data.total);
+    formData.append("total", totalPrice);
     formData.append("price", data.price);
-    formData.append("categoryId", data.category);
+    formData.append("category", data.category);
     const response = await createRecipe(formData);
-    if (response.error) {
-      toast("Could not create recipe");
-      return;
+    if (!response.error) {
+      toast.success("Successful!");
+      navigate("/admin-dashboard/recipe");
     }
-    toast.success("Successful!");
-    navigate("/admin-dashboard/recipe");
+    toast.error("Could not create recipe");
   };
 
   const recipe_data = {
@@ -48,17 +48,12 @@ function CreateRecipe() {
       placeholder: "Enter quantity",
       type: "number",
     },
-    total: {
-      label: "Total",
-      placeholder: "Enter total",
-      type: "number",
-    },
     price: {
       label: "Recipe price",
       placeholder: "Enter price",
       type: "number",
     },
-    item: {
+    image: {
       label: "Recipe Image",
       type: "file",
       validationMsg: "Please select an image",
