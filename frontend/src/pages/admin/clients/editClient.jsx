@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
-import { Button, Form } from "../../../components/forms";
+import { Button } from "../../../components/forms";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
