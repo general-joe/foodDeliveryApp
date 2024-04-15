@@ -47,11 +47,14 @@ export const restApi = createApi({
       }),
     }),
     updateClient: builder.mutation({
-      query: (data) => ({
-        url: `/client/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        const { id, ...rest } = data;
+        return {
+          url: `/client/${id}`,
+          method: "PATCH",
+          body: rest,
+        };
+      },
     }),
     deleteClient: builder.mutation({
       query: (id) => ({
@@ -79,11 +82,14 @@ export const restApi = createApi({
       // }),
     }),
     updateCategory: builder.mutation({
-      query: (data) => ({
-        url: `/category/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        const { id, ...rest } = data;
+        return {
+          url: `/category/${id}`,
+          method: "PATCH",
+          body: rest,
+        };
+      },
     }),
     deleteCategory: builder.mutation({
       query: (id) => ({
@@ -100,11 +106,14 @@ export const restApi = createApi({
       }),
     }),
     updateRecipe: builder.mutation({
-      query: (data) => ({
-        url: `/recipe/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        const { id, ...rest } = data;
+        return {
+          url: `/recipe/${id}`,
+          method: "PATCH",
+          body: rest,
+        };
+      },
     }),
     deleteRecipe: builder.mutation({
       query: (id) => ({
@@ -121,11 +130,14 @@ export const restApi = createApi({
       }),
     }),
     updateDelivery: builder.mutation({
-      query: (data) => ({
-        url: `/delivery/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        const { id, ...rest } = data;
+        return {
+          url: `/delivery/${id}`,
+          method: "PATCH",
+          body: rest,
+        };
+      },
     }),
     deleteDelivery: builder.mutation({
       query: (id) => ({
@@ -142,11 +154,14 @@ export const restApi = createApi({
       }),
     }),
     updateOrder: builder.mutation({
-      query: (data) => ({
-        url: `/order/${data.id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        const { id, ...rest } = data;
+        return {
+          url: `/order/${id}`,
+          method: "PATCH",
+          body: rest,
+        };
+      },
     }),
     updateOrderStatus: builder.mutation({
       query: (data) => ({

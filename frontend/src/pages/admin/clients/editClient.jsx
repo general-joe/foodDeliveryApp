@@ -22,7 +22,6 @@ function EditClient() {
   const onSubmit = async (data) => {
     const updateClientData = {
       username: data.username,
-      email: data.email,
       role: data.role,
       id,
     };
@@ -30,8 +29,8 @@ function EditClient() {
     if (!response.error) {
       toast.success("Client updated successfully");
       navigate("/admin-dashboard/clients");
+      return;
     }
-    toast.error("Could not update client");
     console.log(data);
   };
 
@@ -57,14 +56,6 @@ function EditClient() {
         {errors.username && (
           <p className="text-red-500">{errors.username.message}</p>
         )}
-        <input
-          type="email"
-          placeholder="Edit email"
-          className="border-b w-full border input-bordered rounded-md outline-none bg-transparent text-black my-3 py-4 px-2"
-          defaultValue={singleClient?.email}
-          {...register("email", { required: "Email is required" })}
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         <select
           className="border-b w-full border input-bordered rounded-md outline-none bg-transparent text-black my-3 py-4 px-2"
           defaultValue={singleClient?.role}
