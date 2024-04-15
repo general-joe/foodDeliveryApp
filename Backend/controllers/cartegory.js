@@ -10,7 +10,7 @@ const {
   editCartegory,
   removeCartegory,
 } = require("../helpers/cartegory");
-const { category } = require("../utils/prismaUtil");
+// const { category } = require("../utils/prismaUtil");
 // add cartegory
 
 exports.register_cartegory = async (req, res, next) => {
@@ -22,7 +22,7 @@ exports.register_cartegory = async (req, res, next) => {
         folder: "images",
       });
       if (uploaded) {
-        data.item = uploaded.secure_url;
+        data.image = uploaded.secure_url;
       }
     }
     const category = await addCategory(data);
