@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// const BASE_URL = "http://localhost:4000/api/v1/web";
-const BASE_URL = "https://tomato-x0w7.onrender.com/api/v1/web";
+const BASE_URL = "http://localhost:4000/api/v1/web";
+// const BASE_URL = "https://tomato-x0w7.onrender.com/api/v1/web";
 
 export const restApi = createApi({
   reducerPath: "restApi",
