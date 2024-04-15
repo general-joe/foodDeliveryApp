@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 import { restApi } from "../../appSetup/hook";
 import { setUserInfo } from "../../appSetup/hook/user.slice";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const LoginPopUp = ({ setShowLogin }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const LoginPopUp = ({ setShowLogin }) => {
   const [createClient, { isLoading }] = restApi.useCreateClientMutation();
   const [login, { isLoading: loginLoading }] = restApi.useLoginUserMutation();
   const [currState, setCurrState] = useState("Login");
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -85,20 +87,37 @@ const LoginPopUp = ({ setShowLogin }) => {
             className="border border-gray-300 rounded-md p-2"
           />
           {errors.email && <p>{errors.email.message}</p>}
-          <input
-            type="password"
-            {...register("password", {
-              required: true,
-              maxLength: 10,
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters",
-              },
-            })}
-            placeholder="Password"
-            className="border border-gray-300 rounded-md p-2"
-          />
-          {errors.password && <p>{errors.password.message}</p>}
+          <div className="relative">
+            <input
+              type={!showPassword ? "password" : "text"}
+              {...register("password", {
+                required: true,
+                maxLength: 10,
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              })}
+              placeholder="Password"
+              className="border border-gray-300 rounded-md p-2 overflow-hidden w-full"
+            />
+            <span className="absolute top-[2px] right-0  p-2">
+              {showPassword ? (
+                <IoEyeOutline
+                  fontSize={22}
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="hover:cursor-pointer"
+                />
+              ) : (
+                <IoEyeOffOutline
+                  fontSize={22}
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="hover:cursor-pointer"
+                />
+              )}
+            </span>
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
           <button
             type="submit"
             className="bg-tomato text-white rounded-md p-2 text-center"
