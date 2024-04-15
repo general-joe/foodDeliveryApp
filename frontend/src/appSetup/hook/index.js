@@ -62,14 +62,14 @@ export const restApi = createApi({
 
     createCategory: builder.mutation({
       query: (data) => {
-        const imageFile = data.item[0];
-        const formData = new FormData();
-        formData.append("item", imageFile);
-        formData.append("type", data.type);
+        // const imageFile = data.item[0];
+        // const formData = new FormData();
+        // formData.append("item", imageFile);
+        // formData.append("type", data.type);
         return {
           url: "/category/add",
           method: "POST",
-          body: formData,
+          body: data,
         };
       },
       // query: (data) => ({
@@ -144,6 +144,13 @@ export const restApi = createApi({
     updateOrder: builder.mutation({
       query: (data) => ({
         url: `/order/${data.id}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    updateOrderStatus: builder.mutation({
+      query: (data) => ({
+        url: `/order/status`,
         method: "PATCH",
         body: data,
       }),
