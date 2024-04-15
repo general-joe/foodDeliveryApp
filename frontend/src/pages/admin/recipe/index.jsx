@@ -38,8 +38,6 @@ function Recipe() {
               <th className="text-lg">Image</th>
               <th className="text-lg">Title</th>
               <th className="text-lg">Description</th>
-              <th className="text-lg">Quantity</th>
-              <th className="text-lg">Total</th>
               <th className="text-lg">Price</th>
               <th className="text-lg">Edit</th>
               <th className="text-lg">Delete</th>
@@ -69,14 +67,6 @@ function Recipe() {
                   {/* Description */}
                   <td>
                     <p>{recipe.description}</p>
-                  </td>
-                  {/* Quantity */}
-                  <td>
-                    <p>{recipe.quantity}</p>
-                  </td>
-                  {/* Total */}
-                  <td>
-                    <p>{recipe.total}</p>
                   </td>
                   {/* Price */}
                   <td>

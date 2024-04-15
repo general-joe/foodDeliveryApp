@@ -41,6 +41,7 @@ export function Form({ data, onSubmit, title, loading, login, initialValues }) {
             {...register(key, { required: field.validationMsg })}
             className="border-b w-full border input-bordered rounded-md outline-none bg-transparent text-black my-3 py-4 px-2"
           >
+            <option value="">Select Category</option>
             {field.options.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
