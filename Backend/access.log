@@ -57,3 +57,4 @@
 ::1 - - [14/Apr/2024:20:10:11 +0000] "GET /api/v1/web/order/list HTTP/1.1" 200 372 "http://localhost:5173/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 ::1 - - [14/Apr/2024:20:11:17 +0000] "GET /api/v1/web/order/list HTTP/1.1" 200 1603 "http://localhost:5173/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 ::1 - - [14/Apr/2024:20:15:24 +0000] "GET /api/v1/web/order/list HTTP/1.1" 200 1641 "http://localhost:5173/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+::1 - - [15/Apr/2024:10:14:27 +0000] "POST /api/v1/web/client/login HTTP/1.1" 200 254 "http://localhost:5173/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"

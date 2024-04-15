@@ -81,13 +81,13 @@ exports.removeClient = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    const { email, password} = req.body;
+    const { email, password } = req.body;
     const client = await login(email);
     if (!client) {
       throw new Error("email not found");
     } else {
       const checkPassword = await bcrypt.compare(password, client.password);
-      
+
       if (!checkPassword) {
         throw new Error("Invalid credentials");
       } else {
