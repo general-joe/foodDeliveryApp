@@ -84,7 +84,23 @@ function Orders() {
                 </td>
                 {/* Price */}
                 <td>
-                  <p>{order.status}</p>
+                  <span>
+                    {order.status === "CREATED" ? (
+                      <p className="badge rounded-full bg-green-500 text-white">
+                        {order.status}
+                      </p>
+                    ) : order.status === "PROCESSED" ? (
+                      <p className="badge rounded-full bg-yellow-500 text-white">
+                        {order.status}
+                      </p>
+                    ) : order.status === "DELIVERED" ? (
+                      <p className="badge rounded-full bg-orange-500 text-white">
+                        {order.status}
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </td>
                 {/* View Orders */}
                 <td>
