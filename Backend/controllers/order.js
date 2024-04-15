@@ -8,6 +8,7 @@ const {
   loadOrder,
   editOrder,
   removeOrder,
+  editOrderStatus,
 } = require("../helpers/order");
 const { addDelivery } = require("../helpers/delivery");
 
@@ -77,6 +78,18 @@ exports.patchOrder = async (req, res, next) => {
     const { id } = req.params;
     const data = req.body;
     const order = await editOrder(id, data);
+    res.status(200).json({
+      order,
+    });
+  } catch (error) {
+    logger.error(error);
+    next(new CustomError(error.message, error.status));
+  }
+};
+exports.patchOrderStatus = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const order = await editOrderStatus(data);
     res.status(200).json({
       order,
     });

@@ -6,6 +6,7 @@ router.post("/create", order.createOrder);
 router.get("/list", order.getAllOrders);
 router.get("/:id", order.getSingleOrder);
 router.patch("/:id", order.patchOrder);
+router.patch("/status", order.patchOrderStatus);
 router.delete("/:id", order.deleteOrder);
 
 module.exports = router;
