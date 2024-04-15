@@ -30,7 +30,7 @@ const Navbar = ({ setShowLogin }) => {
       <Link to="/">
         <img src={assets.logo} alt="" className="logo" />
       </Link>
-      <ul className="navbar-menu">
+      <ul className="navbar-menu max-[999px]:hidden">
         <Link
           to="/"
           onClick={() => setMenu("home")}
@@ -80,7 +80,7 @@ const Navbar = ({ setShowLogin }) => {
         )}
       </ul>
       <div className="navbar-right">
-        <div className="relative p-3 navbar-search-icon">
+        <div className="relative p-3 max-[999px]:hidden">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
@@ -111,38 +111,100 @@ const Navbar = ({ setShowLogin }) => {
             </ul>
           </div>
         ) : (
-          <button onClick={() => setShowLogin(true)}>Sign In</button>
+          <button
+            onClick={() => setShowLogin(true)}
+            className="max-[999px]:hidden"
+          >
+            Sign In
+          </button>
         )}
-      </div>
-      {/* Mobile View */}
-      <div className="min-[999px]:hidden ">
-        <div className="dropdown dropdown-end">
-          {/* Icon */}
-          <RxHamburgerMenu fontSize={25} tabIndex={0} className="" />
-          <ul className="flex flex-col menuu" tabIndex={0}>
-            <li className="">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="">
-              <Link to="#explore-menu">Menu</Link>
-            </li>
-            <li className="">
-              <Link to="#app-download">Mobile App</Link>
-            </li>
-            <li className="">
-              <Link to="#footer">Contact Us</Link>
-            </li>
-            <li className="">
-              <Link to="/about-us">About Us</Link>
-            </li>
-          </ul>
-        </div>
+        <MobileViewNavbar setShowLogin={setShowLogin} />
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
+const MobileViewNavbar = ({ setShowLogin }) => {
+  const dispatch = useDispatch();
+
+  const { cartItems } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
+
+  return (
+    <div className="min-[999px]:hidden">
+      <div className="dropdown dropdown-end">
+        {/* Icon */}
+        <div className="btn btn-ghost">
+          <RxHamburgerMenu fontSize={25} tabIndex={0} className="" />
+        </div>
+        <ul
+          className="flex flex-col menu dropdown-content w-52 bg-base-200 z-[1] mt-5 rounded-box"
+          tabIndex={0}
+        >
+          <li className="">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="">
+            <Link to="#explore-menu">Menu</Link>
+          </li>
+          <li className="">
+            <Link to="#app-download">Mobile App</Link>
+          </li>
+          <li className="">
+            <Link to="#footer">Contact Us</Link>
+          </li>
+          <li className="">
+            <Link to="/about-us">About Us</Link>
+          </li>
+          <li>
+            <div className="relative p-3 max-[999px]:hidden">
+              <Link to="/cart">
+                <img src={assets.basket_icon} alt="" />
+              </Link>
+              <span className="absolute top-0 right-0 rounded-full bg-[#E96813] text-white badge-md ">
+                {getTotalQty(cartItems)}
+              </span>
+            </div>
+          </li>
+          <li>
+            {user?.id ? (
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="m-1 btn">
+                  <MdAccountCircle className="w-8 h-8" />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <p>Email: {user?.email}</p>
+                  <p>
+                    <button
+                      className=""
+                      onClick={() => {
+                        dispatch(logoutUser());
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </p>
+                </ul>
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowLogin(true)}
+                className="min-[999px]:hidden"
+              >
+                Sign In
+              </button>
+            )}
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 const AdminNavbar = () => {
   const location = useLocation();
