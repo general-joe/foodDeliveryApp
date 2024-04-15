@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FoodItem.css";
 import { assets } from "../../assets/assets";
 import { addToCart, removeFromCart } from "../../appSetup/hook/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
+import LoginPopUp from "../LoginPopUp/LoginPopUp";
 const FoodItem = ({ id, name, price, description, image }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);

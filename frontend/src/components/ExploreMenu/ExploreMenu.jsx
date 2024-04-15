@@ -3,7 +3,6 @@ import "./ExploreMenu.css";
 import { restApi } from "../../appSetup/hook";
 const ExploreMenu = ({ category, setCategory }) => {
   const { data, isLoading } = restApi.useGetCategoriesQuery();
-  console.log(data);
   return (
     <div className="explore-menu" id="explore-menu">
       <h1>Explore Our Menu</h1>

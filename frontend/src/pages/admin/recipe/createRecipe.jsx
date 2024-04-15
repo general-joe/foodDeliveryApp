@@ -25,7 +25,7 @@ function CreateRecipe() {
     formData.append("categoryId", data.category);
     const response = await createRecipe(formData);
     if (response.error) {
-      toast(response.error);
+      toast("Could not create recipe");
       return;
     }
     toast.success("Successful!");
