@@ -57,7 +57,7 @@ function Recipe() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="w-12 h-12 mask mask-squircle bg-slate-200">
-                          <img src={recipe.item} alt="category-icon" />
+                          <img src={recipe.image} alt="category-icon" />
                         </div>
                       </div>
                     </div>

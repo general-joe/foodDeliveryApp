@@ -20,6 +20,7 @@ const LoginPopUp = ({ setShowLogin }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -38,16 +39,19 @@ const LoginPopUp = ({ setShowLogin }) => {
       currState === "Login"
         ? await login(userData)
         : await createClient(userData);
-
     if (response.error) {
-      toast.error(response.error.data.message);
-      return;
+      reset();
+      toast.error(response.error.message);
     }
     if (currState === "Login") {
       const { message, ...user } = response.data;
       dispatch(setUserInfo(user));
+      if (message === "Rejected") {
+        toast.error(message);
+      }
+      toast.success(message);
     }
-    console.log(response, "Xxxxxxx");
+    reset();
     toast.success("Successful");
     setShowLogin(false);
   };
