@@ -150,7 +150,7 @@ export const restApi = createApi({
     }),
     updateOrderStatus: builder.mutation({
       query: (data) => ({
-        url: `/order/status`,
+        url: `/order/status/bulk`,
         method: "PATCH",
         body: data,
       }),
