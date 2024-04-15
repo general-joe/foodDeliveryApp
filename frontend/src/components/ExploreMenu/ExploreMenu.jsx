@@ -29,7 +29,9 @@ const ExploreMenu = ({ category, setCategory }) => {
               >
                 <LazyLoadImage
                   className={`w-16 h-auto min-w-20 rounded-full transition-all duration-200 ${
-                    category === item.type ? "border-4 border-tomato p-1" : ""
+                    category === item.type
+                      ? "border-4 border-[#ff6347] p-1"
+                      : ""
                   }`}
                   src={item.image}
                   alt=""
