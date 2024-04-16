@@ -19,6 +19,9 @@ export const cartSlice = createSlice({
       );
       toast.error("Item Removed to Cart");
     },
+    emptyCart: (state) => {
+      state.cartItems = [];
+    },
     updateCartQty: (state, action) => {
       const oldstate = state.cartItems;
       const newupdate = action.payload;
@@ -34,7 +37,8 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, updateCartQty } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateCartQty, emptyCart } =
+  cartSlice.actions;
 
 export const cartItems = (state) => state.cart.cartItems;
 
