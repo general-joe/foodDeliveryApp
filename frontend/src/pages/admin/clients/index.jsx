@@ -1,4 +1,3 @@
-import React from "react";
 import { restApi } from "../../../appSetup/hook";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { toast } from "react-toastify";

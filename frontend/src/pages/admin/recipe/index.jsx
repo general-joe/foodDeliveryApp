@@ -1,13 +1,12 @@
-import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { restApi } from "../../../appSetup/hook";
 import { toast } from "react-toastify";
 
 function Recipe() {
+  const navigate = useNavigate();
   const { data, isLoading } = restApi.useGetRecipiesQuery();
-  console.log(data, "Data");
   const [deleteRecipe] = restApi.useDeleteRecipeMutation();
   const handleDelete = async (recipeId) => {
     try {
@@ -38,7 +37,7 @@ function Recipe() {
               <th className="text-lg">Image</th>
               <th className="text-lg">Title</th>
               <th className="text-lg">Description</th>
-              <th className="text-lg">Price</th>
+              <th className="text-lg">Price(Ghc)</th>
               <th className="text-lg">Edit</th>
               <th className="text-lg">Delete</th>
             </tr>
@@ -73,7 +72,12 @@ function Recipe() {
                     <p>{recipe.price}</p>
                   </td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() =>
+                        navigate(`/admin-dashboard/edit-recipe/${recipe.id}`)
+                      }
+                    >
                       <MdModeEditOutline />
                     </button>
                   </th>
