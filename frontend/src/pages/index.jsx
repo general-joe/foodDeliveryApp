@@ -57,6 +57,15 @@ const rootRoutes = createBrowserRouter(
           }}
         />
         <Route
+          path="edit-category/:id"
+          lazy={async () => {
+            const { default: Category } = await import(
+              "./admin/category/editCategory"
+            );
+            return { Component: Category };
+          }}
+        />
+        <Route
           path="add-category"
           lazy={async () => {
             const { default: CreateCategory } = await import(
@@ -128,6 +137,15 @@ const rootRoutes = createBrowserRouter(
           path="recipe"
           lazy={async () => {
             const { default: Recipe } = await import("./admin/recipe");
+            return { Component: Recipe };
+          }}
+        />
+        <Route
+          path="edit-recipe/:id"
+          lazy={async () => {
+            const { default: Recipe } = await import(
+              "./admin/recipe/editRecipe"
+            );
             return { Component: Recipe };
           }}
         />

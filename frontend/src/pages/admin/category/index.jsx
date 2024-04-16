@@ -1,4 +1,3 @@
-import React from "react";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -62,7 +61,14 @@ function Category() {
                     <p>{category.type}</p>
                   </td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() =>
+                        navigate(
+                          `/admin-dashboard/edit-category/${category.id}`
+                        )
+                      }
+                    >
                       <MdModeEditOutline />
                     </button>
                   </th>
