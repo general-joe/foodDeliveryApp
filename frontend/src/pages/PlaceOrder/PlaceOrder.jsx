@@ -1,13 +1,15 @@
 import "./PlaceOrder.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getTotalCartAmount } from "../Cart/Cart";
 import { restApi } from "../../appSetup/hook";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { emptyCart } from "../../appSetup/hook/cart.slice";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
@@ -37,6 +39,7 @@ const PlaceOrder = () => {
     if (response.error) {
       console.log("Error", response.error);
     }
+    dispatch(emptyCart());
     toast.success("Order Placed Successfully!");
     navigate("/");
   };
