@@ -184,7 +184,7 @@ const MobileViewNavbar = ({ setShowLogin, setMenu }) => {
           <li>
             {user?.id ? (
               <div className="flex flex-col items-start">
-                <p>Email: {user?.email}</p>
+                {/* <p>Email: {user?.email}</p> */}
                 <p>
                   <button
                     className=""
