@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload
       );
-      toast.error("Item Removed to Cart");
+      toast.error("Item Removed from Cart");
     },
     emptyCart: (state) => {
       state.cartItems = [];
