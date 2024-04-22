@@ -1,12 +1,9 @@
 import { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { MdAccountCircle, MdFoodBank } from "react-icons/md";
-import { useNavigate, useLocation } from "react-router-dom";
-
-import { useDispatch } from "react-redux";
 
 import { logoutUser } from "../../appSetup/hook/user.slice";
 import { RiMenuLine } from "react-icons/ri";
@@ -30,7 +27,7 @@ const Navbar = ({ setShowLogin }) => {
       <Link to="/">
         <img src={assets.logo} alt="" className="logo" />
       </Link>
-      <ul className="navbar-menu max-[999px]:hidden max-xl:hidden">
+      <ul className="navbar-menu max-[999px]:hidden min-xl:hidden">
         <Link
           to="/"
           onClick={() => setMenu("home")}
@@ -46,13 +43,13 @@ const Navbar = ({ setShowLogin }) => {
         >
           Menu
         </a>
-        <a
+        {/* <a
           href="#app-download"
           onClick={() => setMenu("mobile-app")}
           className={menu === "mobile-app" ? "active" : ""}
         >
           Mobile-App
-        </a>
+        </a> */}
         <a
           href="#footer"
           onClick={() => setMenu("contact-us")}
@@ -147,16 +144,19 @@ const MobileViewNavbar = ({ setShowLogin, setMenu }) => {
             <Link to="/">Home</Link>
           </li>
           <li className="">
-            <Link to="#explore-menu">Menu</Link>
+            <a href="#explore-menu">Menu</a>
           </li>
+          {/* <li className="">
+            <a href="#app-download">Mobile App</a>
+          </li> */}
           <li className="">
-            <Link to="#app-download">Mobile App</Link>
-          </li>
-          <li className="">
-            <Link to="#footer">Contact Us</Link>
+            <a href="#footer">Contact Us</a>
           </li>
           <li className="">
             <Link to="/about-us">About Us</Link>
+          </li>
+          <li className="">
+            <Link to="/cart">Cart</Link>
           </li>
           <li>
             {user?.role === "Admin" ? (
@@ -184,7 +184,7 @@ const MobileViewNavbar = ({ setShowLogin, setMenu }) => {
           <li>
             {user?.id ? (
               <div className="flex flex-col items-start">
-                <p>Email: {user?.email}</p>
+                {/* <p>Email: {user?.email}</p> */}
                 <p>
                   <button
                     className=""

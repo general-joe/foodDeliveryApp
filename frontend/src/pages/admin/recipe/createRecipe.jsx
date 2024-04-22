@@ -19,8 +19,10 @@ function CreateRecipe() {
     formData.append("image", data.image[0]);
     formData.append("title", data.title);
     formData.append("description", data.description);
+    formData.append("quantity", 1);
+    formData.append("total", 1);
     formData.append("price", data.price);
-    formData.append("category", data.category);
+    formData.append("categoryId", data.category);
     const response = await createRecipe(formData);
     if (!response.error) {
       toast.success("Successful!");

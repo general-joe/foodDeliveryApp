@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Home.css";
 import Header from "../../components/Header/Header";
 import ExploreMenu from "../../components/ExploreMenu/ExploreMenu";
@@ -7,9 +7,9 @@ import AppDownload from "../../components/AppDownload/AppDownload";
 import AboutModal from "../../components/About-Us/aboutModal";
 
 const Home = () => {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState(null);
   const [showAbout, setShowAbout] = useState(true);
-
+  console.log(category);
   return (
     <div>
       {showAbout ? <AboutModal setShowAbout={setShowAbout} /> : <></>}

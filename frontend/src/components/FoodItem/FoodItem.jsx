@@ -1,10 +1,8 @@
-import React, { useState } from "react";
 import "./FoodItem.css";
 import { assets } from "../../assets/assets";
 import { addToCart, removeFromCart } from "../../appSetup/hook/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import LoginPopUp from "../LoginPopUp/LoginPopUp";
 const FoodItem = ({ id, name, price, description, image }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
@@ -15,7 +13,6 @@ const FoodItem = ({ id, name, price, description, image }) => {
           className="w-64 h-64 food-item-image skeleton"
           src={image}
           alt=""
-          effect="blur"
         />
         {/* {!cartItems[id] ? (
           <button
