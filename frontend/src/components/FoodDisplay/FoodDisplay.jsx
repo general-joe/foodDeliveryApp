@@ -21,7 +21,7 @@ const FoodDisplay = ({ category }) => {
       <div className="food-display-list">
         {isLoading ? (
           <div className="loader"></div>
-        ) : recipes.length > 0 ? (
+        ) : recipes?.length > 0 ? (
           recipes.map((recipe, index) => (
             <FoodItem
               key={index}
