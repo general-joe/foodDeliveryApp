@@ -29,19 +29,24 @@ function SignUp({ setShowLogin, setCurrState }) {
   });
 
   const onSubmit = async (data) => {
-    const userData = {
-      username: data.username,
-      email: data.email,
-      password: data.password,
-    };
-    const response = await createClient(userData);
-    if (response.error) {
-      toast.error(response.error.data.message);
-      return;
+    try {
+      const userData = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      };
+      const response = await createClient(userData);
+      if (response.error) {
+        toast.error(response.error.data.message);
+        return;
+      }
+      toast.success("Successful");
+      setShowLogin(false);
+    } catch (error) {
+      console.log(error);
     }
-    toast.success("Successful");
-    setShowLogin(false);
   };
+
   return (
     <div>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>

@@ -22,20 +22,25 @@ function EditRecipe() {
   };
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    const price = parseFloat(data.price);
-    formData.append("image", data.image[0]);
-    formData.append("title", data.title);
-    formData.append("description", data.description);
-    formData.append("price", price);
+    try {
+      const formData = new FormData();
+      const price = parseFloat(data.price);
+      formData.append("image", data.image[0]);
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("price", price);
 
-    const response = await updateRecipe({ id, formData });
-    if (!response.error) {
-      toast.success("Recipe updated successfully");
-      navigate("/admin-dashboard/recipe");
-      return;
+      const response = await updateRecipe({ id, formData });
+      if (!response.error) {
+        toast.success("Recipe updated successfully");
+        navigate("/admin-dashboard/recipe");
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      toast.error(error);
     }
-    console.log(data);
   };
 
   return (

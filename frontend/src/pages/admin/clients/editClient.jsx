@@ -20,18 +20,23 @@ function EditClient() {
   const singleClient = data?.clients?.find((client) => client.id === id);
 
   const onSubmit = async (data) => {
-    const updateClientData = {
-      username: data.username,
-      role: data.role,
-      id,
-    };
-    const response = await updateClient(updateClientData);
-    if (!response.error) {
-      toast.success("Client updated successfully");
-      navigate("/admin-dashboard/clients");
-      return;
+    try {
+      const updateClientData = {
+        username: data.username,
+        role: data.role,
+        id,
+      };
+      const response = await updateClient(updateClientData);
+      if (!response.error) {
+        toast.success("Client updated successfully");
+        navigate("/admin-dashboard/clients");
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      toast.error(error);
     }
-    console.log(data);
   };
 
   return (

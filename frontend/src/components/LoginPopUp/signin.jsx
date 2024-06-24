@@ -19,7 +19,6 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
 
   const {
     register,
-
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -32,21 +31,25 @@ const SignIn = ({ setShowLogin, setCurrState }) => {
   });
 
   const onSubmit = async (data) => {
-    const userData = {
-      email: data.email,
-      password: data.password,
-    };
+    try {
+      const userData = {
+        email: data.email,
+        password: data.password,
+      };
 
-    const response = await login(userData);
+      const response = await login(userData);
 
-    if (response.error) {
-      toast.error(response.error.data.message);
-      return;
+      if (response.error) {
+        toast.error(response.error.data.message);
+        return;
+      }
+      const { message, ...user } = response.data;
+      dispatch(setUserInfo(user));
+      toast.success("Successful");
+      setShowLogin(false);
+    } catch (error) {
+      console.log(error);
     }
-    const { message, ...user } = response.data;
-    dispatch(setUserInfo(user));
-    toast.success("Successful");
-    setShowLogin(false);
   };
 
   return (

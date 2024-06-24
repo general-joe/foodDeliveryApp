@@ -24,17 +24,22 @@ function EditCategory() {
   };
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
-    formData.append("type", data.type);
+    try {
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+      formData.append("type", data.type);
 
-    const response = await updateCategory({ id, formData });
-    if (!response.error) {
-      toast.success("Recipe updated successfully");
-      navigate("/admin-dashboard/recipe");
-      return;
+      const response = await updateCategory({ id, formData });
+      if (!response.error) {
+        toast.success("Recipe updated successfully");
+        navigate("/admin-dashboard/recipe");
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      toast.error(error);
     }
-    console.log(data);
   };
 
   return (

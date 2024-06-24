@@ -9,12 +9,16 @@ function CreateCategory() {
   const [createCategory, { isLoading }] = restApi.useCreateCategoryMutation();
 
   const onSubmit = async (data) => {
-    const response = await createCategory(data);
-    if (!response.error) {
-      toast.success("Successful!");
-      navigate("/admin-dashboard/category");
+    try {
+      const response = await createCategory(data);
+      if (!response.error) {
+        toast.success("Successful!");
+        navigate("/admin-dashboard/category");
+      }
+    } catch (error) {
+      console.log(error);
+      toast(response.error);
     }
-    toast(response.error);
   };
   const category_data = {
     type: {
